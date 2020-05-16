@@ -1,0 +1,351 @@
+﻿
+@{
+    ViewBag.Title = "UIThongKe";
+}
+@section header{
+   
+}
+<html>
+<head>
+    <style>
+
+        .tabs {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            background-color: white;
+        }
+
+            .tabs .tab-header {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                margin-top: -58px;
+            }
+
+                .tabs .tab-header li {
+                    display: inline;
+                }
+
+                    .tabs .tab-header li a {
+                        color: grey;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-family: raleway;
+                        font-weight: 700;
+                        padding: 15px;
+                    }
+
+                        .tabs .tab-header li a.active {
+                            border-bottom: 3px solid deepskyblue;
+                            color: deepskyblue;
+                        }
+
+                        .tabs .tab-header li a:hover {
+                            opacity: 0.5;
+                        }
+
+        .tab-content {
+            width: 100%;
+            display: inline-block;
+            background-color: #fff;
+            /*padding-bottom:40px;*/
+            min-height: 400px;
+        }
+
+        .content-card {
+            display: none;
+        }
+
+            .content-card .active {
+                display: block;
+            }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 100%;
+           
+            border-radius: 5px;
+            /*transform:translate(-50%,-50%);*/
+        }
+
+        .infor-admin {
+            margin-left: 15px;
+            margin-right: 15px;
+            background-color: aqua;
+        }
+
+
+        .card-header {
+            background-color: rgb(0,127,255);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        .card .card-header p {
+            color: white;
+            text-align: left;
+            font-size: 20px;
+            font-weight: 700;
+            float: left;
+        }
+
+        .card .card-header .refresh-admin {
+            width: 40px;
+            height: 40px;
+            float: right;
+            background-color: red;
+            border-radius: 50%;
+            border: 1px solid red;
+            cursor: pointer;
+            padding: 5px;
+            transform: translate(5px,40px);
+        }
+
+        .Form-Email .email-content input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .Form-Email .email-content .container button {
+            background-color: white;
+            color: rgb(0,127,255);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            .Form-Email .email-content .container button:hover {
+                opacity: 0.8;
+            }
+
+        .Form-Email .email-content .container {
+            padding: 16px;
+        }
+
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        .Form-Email {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .email-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            border: 1px solid #888;
+            width: 80%;
+            position: relative;
+        }
+
+        .close {
+            position: relative;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: red;
+                cursor: pointer;
+            }
+
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+
+        @@-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @@keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+
+        @@media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .savebtn {
+                width: 100%;
+            }
+
+            .notsavebtn {
+                width: 100%;
+            }
+        }
+    </style>
+    <script src="~/Scripts/chart/highcharts.js"></script>
+    <script src="~/Scripts/chart/exporting.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body>
+    <div class="tabs">
+        <ul class="tab-header">
+            <li><a href="#tab1" class="active">Thông tin chủ khách sạn</a></li>
+            <li><a href="#tab2">Thông tin chung</a></li>
+            <li><a href="#tab3">Loại phòng</a></li>
+            <li><a href="#tab4">Danh sách tầng</a></li>
+            <li><a href="#tab5">Danh sách phòng</a></li>
+            <li><a href="#tab7">Nhân viên</a></li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="tab1" class="content-card active">
+                <form class="infor-admin" action="" method="post">
+                    <div class="card">
+                        <figure class="highcharts-figure" style=" ">
+                            <div id="container" style=" width:1000px; height:500px"></div>
+                            <p class="highcharts-description">
+                                Pie chart where the individual slices can be clicked to expose more
+                                detailed data.
+                            </p>
+                        </figure>
+                    </div>
+                </form>
+            </div>
+           
+
+
+        </div>
+    </div>
+    <script>
+       // Create the chart
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Browser market shares. January, 2018'
+    },
+    subtitle: {
+        text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Total percent market share'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "Browsers",
+            colorByPoint: true,
+            data: [
+                {
+                    name: "Chrome",
+                    y: 62.74,
+                    drilldown: "Chrome"
+                },
+                {
+                    name: "Firefox",
+                    y: 10.57,
+                    drilldown: "Firefox"
+                },
+                {
+                    name: "Internet Explorer",
+                    y: 7.23,
+                    drilldown: "Internet Explorer"
+                },
+                {
+                    name: "Safari",
+                    y: 5.58,
+                    drilldown: "Safari"
+                },
+                {
+                    name: "Edge",
+                    y: 4.02,
+                    drilldown: "Edge"
+                },
+                {
+                    name: "Opera",
+                    y: 1.92,
+                    drilldown: "Opera"
+                },
+                {
+                    name: "Other",
+                    y: 7.62,
+                    drilldown: null
+                }
+            ]
+        }
+    ],
+   
+});
+    </script>
+</body>
+</html>

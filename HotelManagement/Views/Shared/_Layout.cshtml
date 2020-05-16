@@ -1,0 +1,416 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            all: unset;
+            position: relative;
+            top: 0;
+            width: 100%;
+        }
+
+        .configuration-admin {
+            position: relative;
+            display: inline-block;
+            right: 210px;
+            position: absolute;
+        }
+
+
+
+        .configuration-content {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .btn-configuration {
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            background-color: black;
+        }
+
+            .btn-configuration:hover {
+                background-color: blue;
+            }
+
+
+
+        .header-configuration {
+            background-color: white;
+            height: 80px;
+            position: relative;
+            margin: 24px 0 12px 0;
+        }
+
+        .container-configuration {
+            background-color: white;
+            height: 480px;
+        }
+
+        .item-configuration {
+            width: 290px;
+            height: 100px;
+            float: left;
+            margin-left: 70px;
+            margin-top: 70px;
+            position: relative;
+        }
+
+            .item-configuration:hover {
+                background-color: rgb(234,234,234);
+            }
+
+        .item-left {
+            top: 0;
+            left: 0;
+            width: 70px;
+            float: left;
+            height: 100px;
+            position: absolute;
+        }
+
+        .item-left-icon {
+            margin: 0;
+        }
+
+        .item-right {
+            float: left;
+            left: 70px;
+            top: 0;
+            width: 220px;
+            height: 100px;
+            position: absolute;
+        }
+
+        .item-right-text {
+            padding: 0;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: aqua;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        .configuration-form {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            border: 1px solid #888;
+            width: 100%;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+            .close:hover, .close:focus {
+                color: red;
+                cursor: pointer;
+            }
+
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s;
+        }
+
+        @@-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @@keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        @@media screen and (max-width:300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/css/fontastic.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/css/grasp_mobile_progress_circle-1.0.0.min.css">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/css/style.default.premium.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/img/favicon.ico">
+    <!-- Tweaks for older IEs-->
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+        <div class="side-navbar-wrapper">
+            <!-- Sidebar Header    -->
+            <div class="sidenav-header d-flex align-items-center justify-content-center">
+                <!-- User Info-->
+                <div class="sidenav-header-inner text-center">
+                    <a href="pages-profile.html"><img src="https://elticenter.files.wordpress.com/2015/05/english-language-learning-english-language-learners-1e0au9v.jpg" alt="person" class="img-fluid rounded-circle"></a>
+                    <h2 class="h5">Hotel</h2>
+                </div>
+                <!-- Small Brand information, appears on minimized sidebar-->
+                <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+            </div>
+            <!-- Sidebar Navigation Menus-->
+            <div class="main-menu">
+                <h5 class="sidenav-heading">Main</h5>
+                <ul id="side-main-menu" class="side-menu list-unstyled">
+                    <li><a href="/Home/Index"> <i class="icon-home"></i>Home</a></li>
+                    <li><a href="/Room/Index"> <i class="icon-home"></i>Sơ đồ phòng</a></li>
+                    <li><a href="/Room/Index"> <i class="icon-home"></i>Khách lẻ</a></li>
+                    <li><a href="/Room/Index"> <i class="icon-home"></i>Lễ Tân</a></li>
+                    <li><a href="/ThongKe/UIThongKe"> <i class="icon-home"></i>Thống Kê</a></li>
+                    <li><a href="/Room/Index"> <i class="icon-home"></i>Báo Cáo</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div class="page">
+
+        <!-- navbar-->
+
+        <header class="header" style=" z-index: 5; position: fixed; width: 100%">
+            <nav class="navbar">
+                <div class="navbar-header">
+                    <a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a>
+                    <a href="index.html" class="navbar-brand">
+                        <div class="brand-text d-none d-md-inline-block"><span></span><strong class="text-primary"></strong></div>
+                    </a>
+
+                    <div class="configuration-admin">
+                        <button class="btn-configuration" onclick="document.getElementById('myConfiguration').style.display='block'" style="width:auto;">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+        <section style="padding-top: 100px">
+
+            <h1 class="h3 mb-4 text-gray-800">@RenderSection("header", required: true)</h1>
+
+            <div id="myConfiguration" class="configuration-content">
+                <form class="configuration-form animate" action="/action_page.php" method="post">
+                    <div class="header-configuration">
+                        <span onclick="document.getElementById('myConfiguration').style.display='none'" class="close" title="Close Form">&times;</span>
+                        <p style="color:grey;font-size: 24px;height: 30px;margin: 0;font-weight:bold;padding-top:20px;text-align:center;">Cấu hình khách sạn</p>
+                    </div>
+                    <div style="background-color:grey;border-top:5px solid #bbb;"></div>
+                    <div class="container-configuration">
+                        <a href="/Setting_Admin/Infor_Hotelier" class="item-configuration">
+                            <div class="item-left">
+                                <p class="item-left-icon">
+                                    <img src="https://img.favpng.com/25/7/23/computer-icons-user-profile-avatar-image-png-favpng-LFqDyLRhe3PBXM0sx2LufsGFU.jpg" alt="" height="80" width="50" style="left:10px;top:10px; position:absolute;border-radius: 50%;border:5px solid black" />
+                                </p>
+                            </div>
+                            <div class="item-right">
+                                <p class="item-right-text">Thông tin chủ khách sạn</p>
+                                <p style="color:grey;font-size:14px;text-align:center;">Các thông tin cơ bản về chủ khách sạn</p>
+                            </div>
+                        </a>
+                        <a href="#" class="item-configuration">
+                            <div class="item-left">
+                                <p class="item-left-icon">
+                                    <img src="https://cdn4.iconfinder.com/data/icons/essentials-6/32/87-01-512.png" alt="" height="80" width="50" style="left:10px;top:10px; position:absolute;border-radius: 50%;border:5px solid black" />
+                                </p>
+                            </div>
+                            <div class="item-right">
+                                <p class="item-right-text">Danh sách phòng</p>
+                                <p style="color:grey;font-size:14px;text-align:center;">Danh sách các phòng được sắp xếp dựa trên loại phòng</p>
+                            </div>
+                        </a>
+                        <a href="#" class="item-configuration">
+                            <div class="item-left">
+                                <p class="item-left-icon">
+                                    <img src="~/Assets/male-user-shadow.png" alt="" height="80" width="50" style="left:10px;top:10px; position:absolute;border-radius: 50%;border:5px solid black" />
+                                </p>
+                            </div>
+                            <div class="item-right">
+                                <p class="item-right-text">Danh sách nhân viên</p>
+                                <p style="color:grey;font-size:14px;text-align:center;">Danh sách nhân viên của khách sạn</p>
+                            </div>
+                        </a>
+                        <a href="#" class="item-configuration">
+                            <div class="item-left">
+                                <p class="item-left-icon">
+                                    <img src="~/Assets/info.png" alt="" height="80" width="50" style="left:10px;top:10px; position:absolute;border-radius: 50%;border:5px solid black" />
+                                </p>
+                            </div>
+                            <div class="item-right">
+                                <p class="item-right-text">Thông tin chung</p>
+                                <p style="color:grey;font-size:14px;text-align:center;">Thông tin cơ bản của khách sạn</p>
+                            </div>
+                        </a>
+                        <a href="#" class="item-configuration">
+                            <div class="item-left">
+                                <p class="item-left-icon">
+                                    <img src="~/Assets/bed.png" alt="" height="80" width="50" style="left:10px;top:10px; position:absolute;border-radius: 50%;border:5px solid black" />
+                                </p>
+                            </div>
+                            <div class="item-right">
+                                <p class="item-right-text">Loại phòng</p>
+                                <p style="color:grey;font-size:14px;text-align:center;">Danh sách các loại phòng được sử dụng trong khách sạn</p>
+                            </div>
+                        </a>
+                    </div>
+                </form>
+            </div>
+            @RenderBody()
+
+
+
+
+        </section>
+        <!-- Counts Section -->
+
+        <footer class="main-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Your company &copy; 2017-2020</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <p>Version 1.4.7</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div id="style-switch" class="collapse">
+        <h5 class="mb-3">Select theme colour</h5>
+        <form class="mb-3">
+            <select name="colour" id="colour" class="form-control">
+                <option value="">select colour variant</option>
+                <option value="default.premium">green</option>
+                <option value="red.premium">red</option>
+                <option value="violet.premium">violet</option>
+                <option value="pink.premium">pink</option>
+                <option value="sea.premium">sea</option>
+                <option value="blue.premium">blue</option>
+            </select>
+        </form>
+        <p><img src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/img/template-mac.png" alt="" class="img-fluid"></p>
+        <p class="text-muted text-small">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
+    </div>
+    <!-- JavaScript files-->
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/jquery/jquery.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/jquery.cookie/jquery.cookie.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/chart.js/Chart.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/js/charts-home.js"></script>
+    <!-- Notifications-->
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/messenger-hubspot/build/js/messenger.min.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/vendor/messenger-hubspot/build/js/messenger-theme-flat.js"></script>
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/js/home-premium.js"></script>
+    <!-- Main File-->
+    <script src="https://d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-7/js/front.js"></script>
+
+    <script>
+
+        var form = document.getElementById('myConfiguration');
+        window.onclick = function (event) {
+            if (event.target == form) {
+                form.style.display = "none";
+            }
+        }
+
+                    //function myFunction() {
+                    //    document.getElementById("myConfiguration").classList.toggle("show");
+                    //    if (!event.target.matches('.btn-configuration')) {
+                    //        var configurations = document.getElementsByClassName("configuration-content");
+                    //        var i;
+                    //        for (i = 0; i < configurations.length; i++) {
+                    //            var openConfiguration = configurations[i];
+                    //            if (openConfiguration.classList.contains('show')) {
+                    //                openConfiguration.classList.remove('show');
+                    //            }
+                    //        }
+                    //    }
+                    //}
+                    //window.onclick = function (event) {
+                    //    if (!event.target.matches('.btn-configuration')) {
+                    //        var configurations = document.getElementsByClassName("configuration-content");
+                    //        var i;
+                    //        for (i = 0; i < configurations.length; i++) {
+                    //            var openConfiguration = configurations[i];
+                    //            if (openConfiguration.classList.contains('show')) {
+                    //                openConfiguration.classList.remove('show');
+                    //            }
+                    //        }
+                    //    }
+                    //}
+    </script>
+
+
+</body>
+
+</html>
+

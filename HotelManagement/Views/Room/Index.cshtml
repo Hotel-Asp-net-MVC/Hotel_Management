@@ -1,0 +1,554 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section header{
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Room Management</title>
+    <style>
+        .body-room{
+            background-color:white;
+            width:100%;
+            height:1500px;
+        }
+
+
+        .header-room{
+            background-color:white;
+            width:100%;
+            height:150px;
+            position:relative;
+        }
+
+        .button-room-all {
+            width: 100px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: white;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            color: green;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button-room-trong {
+            width: 90px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: green;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button-room-nhanphong {
+            width: 140px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: palevioletred;
+            border: 2px solid #db7093;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button-room-quahan {
+            width: 110px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: orangered;
+            border: 2px solid #ff4500;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button-room-dadat {
+            width: 100px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: blue;
+            border: 2px solid #0000ff;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button-room-koden {
+            width: 130px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: purple;
+            border: 2px solid #800080;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button-room-dangsua {
+            width: 120px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: grey;
+            border: 2px solid #808080;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .button-room-ban {
+            width: 70px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+            background-color: saddlebrown;
+            border: 2px solid #8b4513;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .input-room {
+            all: unset;
+            width: 200px;
+            height: 30px;
+            position: absolute;
+            left: 5px;
+            margin: 5px;
+            background-color: wheat;
+            border: none;
+            top: 70px;
+            border-radius: 5px;
+            border-color: red;
+            text-align: left;
+            font-size: 14px;
+            color: black;
+        }
+
+        .room{
+            width:255px;
+            height:100px;
+            background-color:orange;
+            float:left;
+            margin-left:20px;
+            margin-top:20px;
+        }
+
+        .room-left{
+            width:70px;
+            float:left;
+            background-color:palevioletred;
+            position:relative;
+        }
+
+        .room-left-number {
+            font-size: 20px;
+            height: 30px;
+            margin: 0;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .room-left-type {
+            padding-top:5px;
+            color:white;
+            font-size: 12px;
+            height: 30px;
+            margin: 0;
+            text-align: center;
+            font-weight:bold;
+        }
+
+        .room-left-icon {
+            height: 40px;
+            margin: 0;
+        }
+
+        .room-right{
+            float:left;
+            background-color:rgb(255,194,204);
+            width:185px;
+            height:100px;
+        }
+
+        .room-right-text {
+            all: unset;
+            padding: 0px;
+            height: 25px;
+            margin-top: 5px;
+            font-size: 16px;
+            text-align: center;
+            line-height:25px;
+            align-content:center;
+            color:black;
+            display: block;
+        }
+
+        .button-icon{
+            width:60px;
+            height:60px;
+            float:left;
+        }
+
+        .button-icon a{
+            background-color:blue;
+            
+        }
+
+        .button-icon a .ico {
+            font-size: 2.8rem;
+            display: block;
+            text-align: center;
+            margin: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="body-room">
+        <div class="header-room">
+            <button class="button-room-all">Tất cả (20)</button>
+            <button class="button-room-trong">Trống (9)</button>
+            <button class="button-room-nhanphong">Nhận phòng (1)</button>
+            <button class="button-room-quahan">Quá hạn (1)</button>
+            <button class="button-room-dadat">Đã đặt (1)</button>
+            <button class="button-room-koden">Không đến (6)</button>
+            <button class="button-room-ban">Bẩn (1)</button>
+            <button class="button-room-dangsua">Đang sửa (1)</button>
+            <div class="button-icon">
+                <a href="#" class="button">
+                    <span class="ico fa-skull-crossbones"></span>
+                </a>
+            </div>
+            <br />
+            <input class="input-room" type="text" name="name" value="" placeholder="Lọc phòng" />
+        </div>
+
+        <div class="content-room">
+            <div class="room">
+                <div class="room-left">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">101</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 10</p>
+                    <p class="room-right-text">00: 02: 05</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">102</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:orangered;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">103</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(255, 205, 142 )">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 01</p>
+                    <p class="room-right-text">00: 02: 05</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:blue;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">105</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(136, 170, 255 )">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 05</p>
+                    <p class="room-right-text">00: 02: 05</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:purple;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">106</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(198,170,221)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 06</p>
+
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:saddlebrown;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">107</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(225,169,92)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 07</p>
+                    <p class="room-right-text">00: 02: 05</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:grey;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">108</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(229,229,229)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 08</p>
+                    <p class="room-right-text">00: 02: 05</p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">109</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">201</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">202</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">203</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">204</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">205</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">206</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:green;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">207</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(66, 242, 157 )">
+                    <p class="room-right-text"></p>
+                    <p class="room-right-text">Trống</p>
+                    <p class="room-right-text"></p>
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:purple;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">208</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(198,170,221)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 09</p>
+                   
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:purple;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">209</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(198,170,221)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 13</p>
+                    
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:purple;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">301</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(198,170,221)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 20</p>
+                    
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:purple;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">302</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(198,170,221)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 16</p>
+                    
+                </div>
+            </div>
+            <div class="room">
+                <div class="room-left" style="background-color:purple;">
+                    <p class="room-left-type">STD</p>
+                    <p class="room-left-number">303</p>
+                    <p class="room-left-icon">
+                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                    </p>
+                </div>
+                <div class="room-right" style="background-color:rgb(198,170,221)">
+                    <p class="room-right-text">27/04/2020, 9:14</p>
+                    <p class="room-right-text">Khách 17</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+}
+
+
+
+

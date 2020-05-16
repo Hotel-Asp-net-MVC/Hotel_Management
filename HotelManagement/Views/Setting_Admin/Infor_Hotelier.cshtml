@@ -1,0 +1,395 @@
+﻿
+@{
+    ViewBag.Title = "Infor_Hotelier";
+}
+
+@section header{
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Information Hotelier</title>
+
+    <style>
+        *{margin:0;padding:0;}
+
+        /*body{
+            background-color:#222f3e;
+            padding:0;
+        }*/
+
+        .tabs{
+            width:100%;
+            height:auto;
+            margin:0 auto;
+            background-color:white;
+        }
+
+        .tabs .tab-header {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            margin-top: -58px;
+        }
+
+        .tabs .tab-header li {
+            display: inline;
+        }
+
+        .tabs .tab-header li a{
+
+            color:grey;
+            text-decoration:none;
+            font-size:14px;
+            font-family: raleway;
+            font-weight:700;
+            padding:15px;
+        }
+
+        .tabs .tab-header li a.active {
+            border-bottom: 3px solid deepskyblue;
+            color: deepskyblue;
+        }
+
+        .tabs .tab-header li a:hover {
+            opacity:0.5;
+        }
+
+        .tab-content{
+            width:100%;
+            display:inline-block;
+            background-color:#fff;
+            /*padding-bottom:40px;*/
+            min-height:400px;
+
+        }
+
+        .content-card{
+            display:none;
+        }
+
+        .content-card .active{
+            display:block;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 100%;
+            height:350px;
+            border-radius:5px;
+
+            /*transform:translate(-50%,-50%);*/
+        }
+
+        .infor-admin {
+            margin-left: 15px;
+            margin-right: 15px;
+            background-color: aqua;
+
+        }
+
+
+        .card-header{
+            background-color:rgb(0,127,255);
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            font-family:sans-serif;
+        }
+
+        .card .card-header p{
+            color:white;
+            text-align:left;
+            font-size:20px;
+            font-weight:700;
+            float:left;
+
+        }
+
+        .card .card-header .refresh-admin {
+            width:40px;
+            height:40px;
+            float: right;
+            background-color: red;
+            border-radius:50%;
+            border:1px solid red;
+            cursor: pointer;
+            padding:5px;
+            transform:translate(5px,40px);
+        }
+
+        .Form-Email .email-content input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .Form-Email .email-content .container button {
+            background-color: white;
+            color: rgb(0,127,255);
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .Form-Email .email-content .container button:hover{
+            opacity:0.8;
+        }
+
+        .Form-Email .email-content .container {
+            padding: 16px;
+        }
+        
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        .Form-Email {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .email-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            border: 1px solid #888;
+            width: 80%;
+            position:relative;
+        }
+
+        .close {
+            position: relative;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+
+        @@-webkit-keyframes animatezoom {
+            from {-webkit-transform: scale(0)}
+            to {-webkit-transform: scale(1)}
+        }
+
+        @@keyframes animatezoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+
+        @@media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .savebtn {
+                width: 100%;
+            }
+            .notsavebtn {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="ChangeEmail" class="Form-Email">
+        <form class="email-content animate" action="/action_page.php" method="post">
+            <div class="form-header">
+                <p style="background-color:rgb(0,127,255);color:white;font-size:16px;font-weight:bold;font-family:sans-serif;">Thay đổi email chủ khách sạn</p>
+                <span onclick="document.getElementById('ChangeEmail').style.display='none'" class="close" title="Close Form">&times;</span>
+            </div>
+            <div class="container">
+                <label for="email"><b>Email cũ</b></label>
+                <input type="text" name="email" placeholder="17520460@gm.uit.edu.vn" readonly />
+                <label for="psw"><b>Nhập mật khẩu cũ(bắt buộc)</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="new_email"><b>Nhập email mới</b></label>
+                <input type="text" placeholder="Enter Email" name="new_email" required>
+                <label for="retype_new_email"><b>Nhập lại email mới</b></label>
+                <input type="text" placeholder="Enter Email" name="retype_new_email" required>
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('ChangeEmail').style.display='none'" class="savebtn">Lưu</button>
+                <button type="button" onclick="document.getElementById('ChangeEmail').style.display='none'" class="notsavebtn">Bỏ qua</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="tabs">
+        <ul class="tab-header">
+            <li><a href="#tab1" class="active">Thông tin chủ khách sạn</a></li>
+            <li><a href="#tab2">Thông tin chung</a></li>
+            <li><a href="#tab3">Loại phòng</a></li>
+            <li><a href="#tab4">Danh sách tầng</a></li>
+            <li><a href="#tab5">Danh sách phòng</a></li>
+            <li><a href="#tab7">Nhân viên</a></li>
+           
+        </ul>
+
+        <div class="tab-content">
+            <div id="tab1" class="content-card active">
+                <form class="infor-admin" action="" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <p>Chủ Khách Sạn : Duy Cường</p>
+                            <button class="refresh-admin"><i class="fa fa-refresh" style="color:white;"></i></button>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6" style="background-color:">
+                                    <label>Email</label>
+                                    <br />
+                                    <input type="text" name="" value="17520460@gm.uit.edu.vn" readonly style="border:none;border-bottom:1px solid black;" />
+
+                                    <a onclick="document.getElementById('ChangeEmail').style.display='block'"> <img src="https://www.searchpng.com/wp-content/uploads/2020/01/Edit-Icon-715x715.jpg" alt="" width="25" height="25" style="background-color:white;border:none;" /></a>  
+                                   
+                                    <br /><br /><br />
+                                    <label>Số điện thoại</label>
+                                    <br />
+                                    <input type="text" name="" value="123456789" readonly style="border:none;border-bottom:1px solid black;" />
+                                    <br /><br /><br />
+                                    <label>Gioi Tính</label>
+                                    <br />
+                                    <input type="text" name="" value="Nam" readonly style="border:none;border-bottom:1px solid black;" />
+                                </div>
+                                <div class="col-sm-6" style="background-color:">
+                                    <label>Tên đầy đủ</label>
+                                    <br />
+                                    <input type="text" name="" value="Duy Cường" readonly style="border:none;border-bottom:1px solid black;" />
+                                    <br /><br /><br />
+                                    <label>Địa chỉ</label>
+                                    <br />
+                                    <input type="text" name="" value="123456789" readonly style="border:none;border-bottom:1px solid black;" />
+                                    <br /><br /><br />
+                                    <label>CMND</label>
+                                    <br />
+                                    <input type="text" name="" value="123456789" readonly style="border:none;border-bottom:1px solid black;" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="tab2" class="content-card">
+                <h1>Tab2:content</h1>
+            </div>
+            <div id="tab3" class="content-card">
+                <h1>Tab3:content</h1>
+            </div>
+            <div id="tab4" class="content-card">
+                <h1>Tab4:content</h1>
+            </div>
+            <div id="tab5" class="content-card">
+                <h1>Tab5:content</h1>
+            </div>
+            <div id="tab7" class="content-card">
+                <h1>Tab7:content</h1>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        var form = document.getElementById('ChangeEmail');
+        window.onclick = function (event) {
+            if (event.target == form) {
+                form.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tab-header li a").click(function () {
+                var tabid = $(this).attr("href");
+
+                $(".tab-header li a , .content-card").removeClass("active");
+
+                $(this).addClass("active");
+
+                $(tabid).addClass("active");
+            });
+        });
+    </script>
+
+
+    @*<div class="tabContainer">
+            <div class="scroller scroller-left"><i class="glyphicon glyphicon-chevron-left"></i></div>
+            <div class="scroller scroller-right"><i class="glyphicon glyphicon-chevron-right"></i></div>
+
+            <div class="btn-container">
+                <button onclick="showContent(0)">Thông tin chủ khách sạn</button>
+                <button onclick="showContent(1)">Thông Tin Chung</button>
+                <button onclick="showContent(2)">Loại Phòng</button>
+                <button onclick="showContent(3)">Danh Sách Phòng</button>
+            </div>
+
+            <div class="tabContent">Tab 1:Content</div>
+            <div class="tabContent">Tab 2:Content</div>
+            <div class="tabContent">Tab 3:Content</div>
+            <div class="tabContent">Tab 4:Content</div>
+
+        </div>
+
+
+        <script>
+            var tabButtons = document.querySelectorAll(".tabContainer .btn-container button");
+            var tabContents = document.querySelectorAll(".tabContainer .tabContent");
+
+            function showContent(contentIndex) {
+                tabButtons.forEach(function (node) {
+                    node.style.backgroundColor = "";
+                    node.style.color = "";
+                });
+                tabButtons[contentIndex].style.backgroundColor = "rgb(136,170,255)";
+                tabButtons[contentIndex].style.color = "blue";
+
+                tabContents.forEach(function (node) {
+                    node.style.display = "none";
+                });
+                tabContents[contentIndex].style.display = "block";
+            }
+
+            showContent(0, 'red');
+        </script>*@
+</body>
+</html>
+
