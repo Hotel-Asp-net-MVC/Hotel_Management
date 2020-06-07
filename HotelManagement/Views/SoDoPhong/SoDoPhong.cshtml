@@ -1,0 +1,421 @@
+﻿
+@{
+    ViewBag.Title = "SoDoPhong";
+}0
+
+@section header{
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Room Management</title>
+        <style>
+            .body-room {
+                background-color: white;
+                width: 100%;
+                height: 1500px;
+            }
+
+
+            .header-room {
+                background-color: white;
+                width: 100%;
+                height: 150px;
+                position: relative;
+            }
+
+            .button-room-all {
+                width: 100px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: white;
+                border: 2px solid #4CAF50;
+                border-radius: 5px;
+                color: green;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .button-room-trong {
+                width: 90px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: green;
+                border: 2px solid #4CAF50;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .button-room-nhanphong {
+                width: 140px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: deeppink;
+                border: 2px solid #db7093;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .button-room-quahan {
+                width: 110px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: orangered;
+                border: 2px solid #ff4500;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .button-room-dadat {
+                width: 100px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: blue;
+                border: 2px solid #0000ff;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .button-room-koden {
+                width: 130px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: purple;
+                border: 2px solid #800080;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .button-room-dangsua {
+                width: 120px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: grey;
+                border: 2px solid #808080;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .button-room-ban {
+                width: 70px;
+                height: 40px;
+                float: left;
+                margin: 5px;
+                background-color: saddlebrown;
+                border: 2px solid #8b4513;
+                border-radius: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .input-room {
+                all: unset;
+                width: 200px;
+                height: 30px;
+                position: absolute;
+                left: 5px;
+                margin: 5px;
+                background-color: wheat;
+                border: none;
+                top: 70px;
+                border-radius: 5px;
+                border-color: red;
+                text-align: left;
+                font-size: 14px;
+                color: black;
+            }
+
+            .room {
+                width: 255px;
+                height: 120px;
+                
+                float: left;
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+
+            .room-left {
+                width: 70px;
+                height:120px;
+                float: left;
+               
+                position: relative;
+            }
+
+            .room-left-number {
+                font-size: 20px;
+                height: 30px;
+                margin: 0;
+                text-align: center;
+                color: white;
+                font-weight: bold;
+            }
+
+            .room-left-type {
+                padding-top: 5px;
+                color: white;
+                font-size: 12px;
+                height: 30px;
+                margin: 0;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .room-left-icon {
+                height: 40px;
+                margin: 0;
+            }
+
+            .room-right {
+                float: left;
+               
+                width: 185px;
+                height: 120px;
+            }
+
+            .room-right-text {
+                all: unset;
+                padding: 0px;
+                height: 25px;
+                margin-top: 5px;
+                font-size: 13px;
+                text-align: center;
+                line-height: 10px;
+                align-content: center;
+                color: black;
+                display: block;
+            }
+
+            .button-icon {
+                width: 60px;
+                height: 60px;
+                float: left;
+            }
+
+                .button-icon a {
+                    background-color: blue;
+                }
+
+                    .button-icon a .ico {
+                        font-size: 2.8rem;
+                        display: block;
+                        text-align: center;
+                        margin: auto;
+                    }
+        </style>
+
+    </head>
+    <body>
+        @using HotelManagement.Models;
+        @using HotelManagement.DaTa_Access_Object;
+        <div class="body-room">
+
+            <div class="header-room">
+                <form method="post" action="/SoDoPhong/SoDoPhong">
+                    <button type="submit" class="button-room-all" name="TatCa">Tất cả (20)</button>
+
+                </form>
+
+                <form method="post" action="/SoDoPhong/ShowLoaiPhongTrong">
+                    <button type="submit" class="button-room-trong" name="Trong">Trống (9)</button>
+                </form>
+
+                <form method="post" action="/SoDoPhong/ShowPhongNhan">
+                    <button class="button-room-nhanphong" name="NhanPhong">Nhận phòng (1)</button>
+                </form>
+
+                <form method="post" action="/SoDoPhong/ShowPhongQuaHan">
+                    <button class="button-room-quahan" name="QuaHan">Quá hạn (1)</button>
+                </form>
+
+                <form method="post" action="/SoDoPhong/ShowPhongDaDat">
+                    <button class="button-room-dadat" name="Dadat">Đã đặt (1)</button>
+                </form>
+
+                <form method="post" action="/SoDoPhong/ShowPhongKhongDen">
+                    <button class="button-room-koden" name="KhongDen">Không đến (6)</button>
+                </form>
+
+                <div class="button-icon">
+                    <a href="#" class="button">
+                        <span class="ico fa-skull-crossbones"></span>
+                    </a>
+                </div>
+                <br />
+                <input class="input-room" type="text" name="name" value="" placeholder="Lọc phòng" />
+            </div>
+            <form method="post" action="/SoDoPhong/Refresh">
+                <button style="margin-left:1000px"> Reresh </button>
+            </form>
+            <div class="content-room">
+
+                @{
+
+                    List<ThongTinPhong> thongtinphong = new List<ThongTinPhong>();
+                    thongtinphong = ViewBag.thongtinphong;
+                    <h1>@thongtinphong.Count()</h1>
+                    for (int i = 0; i < thongtinphong.Count(); i++)
+                    {
+
+                        if (thongtinphong[i].TrangThai == "Trong")
+                        {
+                            <div class="room">
+                                <div class="room-left" id="@i" style="background-color:green">
+                                    <p class="room-left-type">@thongtinphong[i].LoaiPhong</p>
+                                    <p class="room-left-number">@thongtinphong[i].SoPhong</p>
+                                    <p class="room-left-icon">
+                                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                                    </p>
+                                </div>
+
+                                <div class="room-right" id="sophong" style="background-color:rgb(66, 242, 157 )">
+                                   <p class="room-right-text"> @thongtinphong[i].TrangThai</p>
+                                  
+                                </div>
+                            </div>
+                        }
+
+
+                        if (thongtinphong[i].TrangThai == "Da Dat")
+                        {
+                            <div class="room">
+                                <div class="room-left" id="@i" style="background-color:blue">
+                                    <p class="room-left-type">@thongtinphong[i].LoaiPhong</p>
+                                    <p class="room-left-number">@thongtinphong[i].SoPhong</p>
+                                    <p class="room-left-icon">
+                                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                                    </p>
+                                </div>
+
+                                <div class="room-right" id="" style="background-color:dodgerblue">
+                                    <p class="room-right-text">@thongtinphong[i].ThoiGianDen -> @thongtinphong[i].ThoiGianDi</p>
+                                    <p class="room-right-text"> @thongtinphong[i].TrangThai</p>
+                                    <p class="room-right-text">@thongtinphong[i].TenKhachHang</p>
+
+                                </div>
+                            </div>
+                        }
+                        if (thongtinphong[i].TrangThai == "Da Nhan")
+                        {
+                            <div class="room">
+                                <div class="room-left" id="@i" style="background-color:deeppink">
+                                    <p class="room-left-type">@thongtinphong[i].LoaiPhong</p>
+                                    <p class="room-left-number">@thongtinphong[i].SoPhong</p>
+                                    <p class="room-left-icon">
+                                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                                    </p>
+                                </div>
+
+                                <div class="room-right" id="" style="background-color:hotpink">
+                                    <p class="room-right-text">@thongtinphong[i].ThoiGianDen -> @thongtinphong[i].ThoiGianDi</p>
+                                    <p class="room-right-text"> @thongtinphong[i].TrangThai</p>
+                                    <p class="room-right-text">@thongtinphong[i].TenKhachHang</p>
+
+                                </div>
+                            </div>
+                        }
+                        if (thongtinphong[i].TrangThai == "Qua Han")
+                        {
+                            <div class="room">
+                                <div class="room-left" id="@i" style="background-color:orangered">
+                                    <p class="room-left-type">@thongtinphong[i].LoaiPhong</p>
+                                    <p class="room-left-number">@thongtinphong[i].SoPhong</p>
+                                    <p class="room-left-icon">
+                                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                                    </p>
+                                </div>
+
+                                <div class="room-right" id="" style="background-color:rgb(255,205,142)">
+                                    <p class="room-right-text">@thongtinphong[i].ThoiGianDen -> @thongtinphong[i].ThoiGianDi</p>
+                                    <p class="room-right-text"> @thongtinphong[i].TrangThai</p>
+                                    <p class="room-right-text">@thongtinphong[i].TenKhachHang</p>
+
+                                </div>
+                            </div>
+                        }
+                        if (thongtinphong[i].TrangThai == "Khong Den")
+                        {
+                            <div class="room">
+                                <div class="room-left" id="@i" style="background-color:purple">
+                                    <p class="room-left-type">@thongtinphong[i].LoaiPhong</p>
+                                    <p class="room-left-number">@thongtinphong[i].SoPhong</p>
+                                    <p class="room-left-icon">
+                                        <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                                    </p>
+                                </div>
+
+                                <div class="room-right" id="" style="background-color:rgb(198,170,221)">
+                                    <p class="room-right-text">@thongtinphong[i].ThoiGianDen -> @thongtinphong[i].ThoiGianDi</p>
+                                    <p class="room-right-text"> @thongtinphong[i].TrangThai</p>
+                                    <p class="room-right-text">@thongtinphong[i].TenKhachHang</p>
+
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+
+
+                    <div class="room">
+                        <div class="room-left" style="background-color:deeppink">
+                            <p class="room-left-type"></p>
+                            <p class="room-left-number"></p>
+                            <p class="room-left-icon">
+                                <img src="https://lh3.googleusercontent.com/t4W665N-6AGlxIXbMIzJznQFPTJ4TgGMl2BrT32KyxsMBeEFpyhfjMIFU0D1eZ6dUuQk=w720-h310" height="20" width="20" style="left:25px;top:70px; position:absolute;" />
+                            </p>
+                        </div>
+
+                        <div class="room-right" id="" style="background-color:lightpink">
+                            <p class="room-right-text"></p>
+                            <p class="room-right-text"> </p>
+                            <p class="room-right-text"></p>
+
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+      
+    </body>
+</html>
+}

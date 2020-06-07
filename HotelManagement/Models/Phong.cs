@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace QuanLyKhachSan.Models
+namespace HotelManagement.Models
 {
     public class Phong
     {
-        private string MaPhong { get; set; }
-        private string MaLoaiPhong { get; set; }
-        private int SoPhong { get; set; }
-        private string TrangThai { get; set; }
-        public Phong() { }
-        public Phong(string maphong, string maloaiphong, int sophong, string trangthai)
-        {
-            this.MaPhong = maphong;
-            this.MaLoaiPhong = maloaiphong;
-            this.SoPhong = sophong;
-            this.TrangThai = trangthai;
-        }
+        public string MaPhong { get; set; }
+        public string MaLoaiPhong { get; set; }
+        public int SoPhong { get; set; }
+        public string TrangThai { get; set; }
     }
 }

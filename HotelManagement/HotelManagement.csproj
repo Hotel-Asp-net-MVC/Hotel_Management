@@ -127,15 +127,23 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\Setting_AdminController.cs" />
+    <Compile Include="Controllers\SoDoPhongController.cs" />
     <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="DaTa_Access_Object\Connect_Database.DAO.cs" />
+    <Compile Include="DaTa_Access_Object\HoaDonDAO.cs" />
+    <Compile Include="DaTa_Access_Object\PhongDAO.cs" />
+    <Compile Include="DaTa_Access_Object\ThongTinPhongDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CT_DatPhong.cs" />
+    <Compile Include="Models\DatPhong.cs" />
+    <Compile Include="Models\HoaDon.cs" />
+    <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\LoaiNhanVien.cs" />
     <Compile Include="Models\LoaiPhong.cs" />
-    <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Models\Phong.cs" />
+    <Compile Include="Models\ThongTinPhong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1924,6 +1932,7 @@
     <Content Include="Assets\admin\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\admin\vendor\jquery\jquery.min.map" />
     <Content Include="Assets\admin\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1953,6 +1962,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\ThongKe\UIThongKe.cshtml" />
+    <Content Include="Views\ThongKe\ThongKe.cshtml" />
+    <Content Include="Views\SoDoPhong\SoDoPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

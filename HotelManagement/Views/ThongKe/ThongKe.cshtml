@@ -1,9 +1,14 @@
 ﻿
 @{
+    ViewBag.Title = "ThongKe";
+}
+
+
+@{
     ViewBag.Title = "UIThongKe";
 }
 @section header{
-   
+
 }
 <html>
 <head>
@@ -250,13 +255,13 @@
             <div id="tab1" class="content-card active">
 
                 <form class="infor-admin" action="/ThongKe/ThongKe" method="post">
-                    <h1>@ViewBag.ngaythangnam</h1>
+
                     <div class="card">
                         <ul>
                             <input name="nam" type="text" style="width:200px; left:100px" />
                             <button class="icon-search" type="submit"> </button>
                         </ul>
-                      
+
                         <figure class="highcharts-figure">
                             <div id="container" style="height:600px "></div>
 
@@ -268,7 +273,7 @@
             <div id="tab2" class="content-card">
                 <form class="infor-admin" action="" method="post">
                     <div class="card">
-                       
+                        
 
                     </div>
                 </form>
@@ -285,12 +290,12 @@
 
         </div>
     </div>
-
+    <h1>@ViewBag.nam</h1>
     <script type="text/javascript">
        @{
            List<double> doanhthu= new List<double>();
            doanhthu = ViewBag.thunhap;
-         
+
        }
         var giatri = "@ViewBag.valu";
         var array = giatri.split(" ");
@@ -299,7 +304,7 @@
             var c = Number(array[i]);
             a.push(c);
         }
-       
+
             var chart = new Highcharts.Chart({
             chart: {
 
