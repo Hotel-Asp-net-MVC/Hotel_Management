@@ -43,9 +43,9 @@ namespace HotelManagement.DaTa_Access_Object
             }
             return ThongTin;
         }
-        //lấy thông tin đặt phòng trong ngày
-       //public ThongTinPhong GetThongTinDatPhong(string maphong, string ngay, string thang , string nam)
-       //{
+       // lấy thông tin đặt phòng trong ngày
+       //public ThongTinPhong GetThongTinDatPhong(string maphong, string ngay, string thang, string nam)
+       // {
        //     Connect_Database connect = new Connect_Database();
        //     MySqlConnection mySql = connect.Connection();
        //     string sql = "";
@@ -60,6 +60,6 @@ namespace HotelManagement.DaTa_Access_Object
        //     }
 
        //     return 0;
-       //}
+       // }
     }
 }

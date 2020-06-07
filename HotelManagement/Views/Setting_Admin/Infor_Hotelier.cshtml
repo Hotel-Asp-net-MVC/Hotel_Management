@@ -4,7 +4,7 @@
 }
 
 @section header{
-    
+
 }
 
 <!DOCTYPE html>
@@ -12,76 +12,79 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Information Hotelier</title>
+    <script type="text/javascript" src="jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="scroll.js"></script>
+
 
     <style>
-        *{margin:0;padding:0;}
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
         /*body{
             background-color:#222f3e;
             padding:0;
         }*/
 
-        .tabs{
-            width:100%;
-            height:auto;
-            margin:0 auto;
-            background-color:white;
+        .tabs {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            background-color: white;
         }
 
-        .tabs .tab-header {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            margin-top: -58px;
-        }
+            .tabs .tab-header {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                margin-top: -58px;
+            }
 
-        .tabs .tab-header li {
-            display: inline;
-        }
+                .tabs .tab-header li {
+                    display: inline;
+                }
 
-        .tabs .tab-header li a{
+                    .tabs .tab-header li a {
+                        color: grey;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-family: raleway;
+                        font-weight: 700;
+                        padding: 15px;
+                    }
 
-            color:grey;
-            text-decoration:none;
-            font-size:14px;
-            font-family: raleway;
-            font-weight:700;
-            padding:15px;
-        }
+                        .tabs .tab-header li a.active {
+                            border-bottom: 3px solid deepskyblue;
+                            color: deepskyblue;
+                        }
 
-        .tabs .tab-header li a.active {
-            border-bottom: 3px solid deepskyblue;
-            color: deepskyblue;
-        }
+                        .tabs .tab-header li a:hover {
+                            opacity: 0.5;
+                        }
 
-        .tabs .tab-header li a:hover {
-            opacity:0.5;
-        }
-
-        .tab-content{
-            width:100%;
-            display:inline-block;
-            background-color:#fff;
+        .tab-content {
+            width: 100%;
+            display: inline-block;
+            background-color: #fff;
             /*padding-bottom:40px;*/
-            min-height:400px;
-
+            min-height: 400px;
         }
 
-        .content-card{
-            display:none;
+        .content-card {
+            display: none;
         }
 
-        .content-card .active{
-            display:block;
-        }
+            .content-card .active {
+                display: block;
+            }
 
         .card {
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
             transition: 0.3s;
             width: 100%;
-            height:350px;
-            border-radius:5px;
-
+            height: 350px;
+            border-radius: 5px;
             /*transform:translate(-50%,-50%);*/
         }
 
@@ -89,40 +92,38 @@
             margin-left: 15px;
             margin-right: 15px;
             background-color: aqua;
-
         }
 
 
-        .card-header{
-            background-color:rgb(0,127,255);
-            color:white;
-            font-size:16px;
-            font-weight:bold;
-            font-family:sans-serif;
+        .card-header {
+            background-color: rgb(0,127,255);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: sans-serif;
         }
 
-        .card .card-header p{
-            color:white;
-            text-align:left;
-            font-size:20px;
-            font-weight:700;
-            float:left;
-
+        .card .card-header p {
+            color: white;
+            text-align: left;
+            font-size: 20px;
+            font-weight: 700;
+            float: left;
         }
 
         .card .card-header .refresh-admin {
-            width:40px;
-            height:40px;
+            width: 40px;
+            height: 40px;
             float: right;
             background-color: red;
-            border-radius:50%;
-            border:1px solid red;
+            border-radius: 50%;
+            border: 1px solid red;
             cursor: pointer;
-            padding:5px;
-            transform:translate(5px,40px);
+            padding: 5px;
+            transform: translate(5px,40px);
         }
 
-        .Form-Email .email-content input[type=text], input[type=password] {
+        .modal .modal-content input[type=text], input[type=password], input[type=number], select[name=Pos] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -131,31 +132,34 @@
             box-sizing: border-box;
         }
 
-        .Form-Email .email-content .container button {
-            background-color: white;
+
+
+
+        .modal .modal-content .container button {
             color: rgb(0,127,255);
-            padding: 14px 20px;
-            margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: auto;
+            padding: 10px 18px;
         }
 
-        .Form-Email .email-content .container button:hover{
-            opacity:0.8;
-        }
 
-        .Form-Email .email-content .container {
+            .modal .modal-content .container button:hover, button:active {
+                opacity: 0.8;
+                border: 2px solid red;
+            }
+
+        .modal .modal-content .container {
             padding: 16px;
         }
-        
+
 
         span.psw {
             float: right;
             padding-top: 16px;
         }
 
-        .Form-Email {
+        .modal {
             display: none;
             position: absolute;
             z-index: 1;
@@ -169,28 +173,43 @@
             padding-top: 60px;
         }
 
-        .email-content {
+        .modal-content {
             background-color: #fefefe;
             margin: 5% auto 15% auto;
             border: 1px solid #888;
             width: 80%;
-            position:relative;
-        }
-
-        .close {
             position: relative;
-            right: 25px;
-            top: 0;
-            color: #000;
-            font-size: 35px;
-            font-weight: bold;
         }
 
-        .close:hover,
-        .close:focus {
-            color: red;
-            cursor: pointer;
-        }
+            .modal-content .form-header p {
+                background-color: rgb(0,127,255);
+                width: 100%;
+                height: 60px;
+                font-size: 16px;
+                font-weight: bold;
+                font-family: sans-serif;
+                float: left;
+                color: white;
+                margin: auto;
+                padding: 20px;
+            }
+
+
+            .modal-content .form-header .close {
+                right: 20px;
+                float: right;
+                top: 0;
+                color: white;
+                font-size: 35px;
+                padding: 10px;
+            }
+
+                .modal-content .form-header .close:hover, .close:focus {
+                    color: red;
+                    cursor: pointer;
+                }
+
+
 
         .animate {
             -webkit-animation: animatezoom 0.6s;
@@ -199,13 +218,23 @@
 
 
         @@-webkit-keyframes animatezoom {
-            from {-webkit-transform: scale(0)}
-            to {-webkit-transform: scale(1)}
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
         }
 
         @@keyframes animatezoom {
-            from {transform: scale(0)}
-            to {transform: scale(1)}
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
         }
 
 
@@ -214,23 +243,366 @@
                 display: block;
                 float: none;
             }
-            .savebtn {
+
+            .Okbtn {
                 width: 100%;
             }
-            .notsavebtn {
+
+            .Notbtn {
                 width: 100%;
             }
         }
 
+
+
+        /*tab Type Room*/
+
+        .type-room-header {
+            width: 100%;
+            height: 100px;
+            background-color: rgb(0,127,255);
+        }
+
+
+            .type-room-header p {
+                color: white;
+                text-align: left;
+                font-size: 20px;
+                font-weight: 700;
+                float: left;
+                margin-top: 30px;
+                margin-left: 20px;
+            }
+
+            .type-room-header .add-type-room {
+                display: inline-block;
+                vertical-align: middle;
+                background-image: linear-gradient(white, white), linear-gradient(white, white);
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 20% 70%, 70% 20%;
+                width: 40px;
+                height: 40px;
+                float: right;
+                background-color: red;
+                border-radius: 50%;
+                border: 2px solid red;
+                cursor: pointer;
+                padding: 5px;
+                transform: translate(-10px,80px);
+            }
+
+        .add-type-room:hover {
+            background-image: linear-gradient(red, red), linear-gradient(red, red);
+            border: 3px solid red;
+            background-color: white;
+        }
+
+        .content-card .container .card {
+            background: #fff;
+            border-bottom: 0 none;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+            transition: 0.3s;
+            margin: auto;
+            margin-top: 10px;
+            width: 60%;
+            height: 80px;
+            flex-direction: unset;
+        }
+
+
+            .content-card .container .card:hover {
+                border-radius: 2px 2px 2px 2px;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+
+
+        .icon-type-room {
+            width: 10%;
+            float: left;
+            margin: auto;
+            text-align: center;
+        }
+
+        .text-type-room {
+            width: 70%;
+            float: left;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: sans-serif;
+            text-align: left;
+            margin: auto;
+        }
+
+            .text-type-room p {
+                margin: 0;
+            }
+
+        /*Room */
+
+        .room-header {
+            width: 96%;
+            height: 120px;
+            margin: auto;
+            padding: 5px;
+            border-bottom: 0 none;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+            transition: 0.3s;
+        }
+
+            .room-header h1 {
+                color: grey;
+                font-size: 20px;
+                font-weight: 700;
+                font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+                margin: 10px;
+                margin-top: 10px;
+            }
+
+
+
+            .room-header .btn-sort {
+                text-align: center;
+                box-sizing: border-box;
+                display: inline-block;
+                font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+                -webkit-font-smoothing: antialiased;
+                position: relative;
+                padding: .8em 1.4em;
+                padding-right: 4.7em;
+                background: red;
+                border: none;
+                color: white;
+                transition: .2s;
+                margin: 10px;
+                min-width: 15em;
+            }
+
+
+                .room-header .btn-sort:before, .btn-sort:after {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    padding-top: inherit;
+                    padding-bottom: inherit;
+                    width: 2.8em;
+                    content: "\00a0";
+                    font-family: 'FontAwesome', sans-serif;
+                    font-size: 1.2em;
+                    text-align: center;
+                    transition: .2s;
+                    transform-origin: 50% 60%;
+                }
+
+        .sort-room::after {
+            content: "\f161";
+        }
+
+        .sort-room:hover::after {
+            -webkit-animation: none;
+            -webkit-transform: scale(1.4);
+            animation: none;
+            transform: scale(1.4);
+        }
+
+        .room-header .add-room {
+            display: inline-block;
+            vertical-align: middle;
+            background-image: linear-gradient(white, white), linear-gradient(white, white);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 20% 70%, 70% 20%;
+            width: 40px;
+            height: 40px;
+            float: right;
+            background-color: red;
+            border-radius: 50%;
+            border: 2px solid red;
+            cursor: pointer;
+            padding: 5px;
+            transform: translate(-10px,53px);
+        }
+
+        .add-room:hover {
+            background-image: linear-gradient(red, red), linear-gradient(red, red);
+            border: 3px solid red;
+            background-color: white;
+        }
+
+        @@-webkit-keyframes bounceright {
+            from {
+                -webkit-transform: translateX(0);
+            }
+
+            to {
+                -webkit-transform: translateX(3px);
+            }
+        }
+
+        @@-webkit-keyframes wiggle {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+
+            to {
+                -webkit-transform: rotate(30deg);
+            }
+        }
+
+        @@keyframes bounceright {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(3px);
+            }
+        }
+
+        @@keyframes wiggle {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(30deg);
+            }
+        }
+
+        .room-header .container {
+            background-color: yellow;
+        }
+
+        .conten-sort-room {
+            width: 96%;
+            margin: auto;
+            padding: 5px;
+            border-bottom: 0 none;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+            transition: 0.3s;
+        }
+
+        .container-room {
+            padding: 5px;
+            margin: auto;
+        }
+
+            .container-room h1 {
+                background-color: rgb(243,211,224);
+                color: red;
+                font-size: 16px;
+                font-family: sans-serif;
+                font-weight: 500;
+                padding: 10px;
+            }
+
+            .container-room .room {
+                width: 100px;
+                height: 100px;
+                background-color: green;
+                /*float: left;*/
+                display: inline-block;
+                margin-left: 15px;
+                margin-top: 15px;
+                text-align: center;
+            }
+
+        [data-letters]:before {
+            content: attr(data-letters);
+            display: inline-block;
+            font-size: 1em;
+            width: 1.5em;
+            height: 1.5em;
+            line-height: 1.5em;
+            text-align: center;
+            border-radius: 50%;
+            background: white;
+            vertical-align: middle;
+            margin-right: 1em;
+            color: green;
+            transform: translate(8px,-38px);
+        }
+
+        /*Nhân viên*/
+
+        .list-staff-header {
+            width: 100%;
+            height: 100px;
+            background-color: rgb(0,127,255);
+        }
+
+            .list-staff-header p {
+                color: white;
+                text-align: left;
+                font-size: 20px;
+                font-weight: 700;
+                float: left;
+                margin-top: 30px;
+                margin-left: 20px;
+            }
+
+            .list-staff-header .add-staff {
+                display: inline-block;
+                vertical-align: middle;
+                background-image: linear-gradient(white, white), linear-gradient(white, white);
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 20% 70%, 70% 20%;
+                width: 40px;
+                height: 40px;
+                float: right;
+                background-color: red;
+                border-radius: 50%;
+                border: 2px solid red;
+                cursor: pointer;
+                padding: 5px;
+                transform: translate(-10px,80px);
+            }
+
+        .add-staff:hover {
+            background-image: linear-gradient(red, red), linear-gradient(red, red);
+            border: 3px solid red;
+            background-color: white;
+        }
+
+        .icon-staff {
+            width: 10%;
+            float: left;
+            margin: auto;
+            text-align: center;
+        }
+
+        .text-staff {
+            width: 70%;
+            float: left;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: sans-serif;
+            text-align: left;
+            margin: auto;
+        }
+
+            .text-staff p {
+                margin: 0;
+            }
     </style>
 </head>
 <body>
 
-    <div id="ChangeEmail" class="Form-Email">
-        <form class="email-content animate" action="/action_page.php" method="post">
+    <div id="ChangeEmail" class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
             <div class="form-header">
-                <p style="background-color:rgb(0,127,255);color:white;font-size:16px;font-weight:bold;font-family:sans-serif;">Thay đổi email chủ khách sạn</p>
-                <span onclick="document.getElementById('ChangeEmail').style.display='none'" class="close" title="Close Form">&times;</span>
+                <p>Thay đổi email chủ khách sạn</p>
+                <div onclick="document.getElementById('ChangeEmail').style.display='none'" class="close" title="Close Form">&times;</div>
             </div>
             <div class="container">
                 <label for="email"><b>Email cũ</b></label>
@@ -243,11 +615,131 @@
                 <input type="text" placeholder="Enter Email" name="retype_new_email" required>
             </div>
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('ChangeEmail').style.display='none'" class="savebtn">Lưu</button>
-                <button type="button" onclick="document.getElementById('ChangeEmail').style.display='none'" class="notsavebtn">Bỏ qua</button>
+                <button type="button" onclick="document.getElementById('ChangeEmail').style.display='none'" class="Okbtn">Lưu</button>
+                <button type="button" onclick="document.getElementById('ChangeEmail').style.display='none'" class="Notbtn">Bỏ qua</button>
             </div>
         </form>
     </div>
+
+    <div id="FixRoom" class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="form-header">
+                <p>Sửa phòng</p>
+                <div onclick="document.getElementById('FixRoom').style.display='none'" class="close" title="Close Form">&times;</div>
+            </div>
+            <div class="container">
+                <label for="nameRoom"><b>Tên phòng(Bắt buộc)*</b></label>
+                <input type="text" name="nameRoom" placeholder="Enter Name Room" required />
+                <br />
+                <select class="form-control">
+                    <option>Phòng Vip</option>
+                    <option>Phòng đơn</option>
+                    <option>Phòng 3 giường</option>
+                    <option>Phòng đôi</option>
+                </select>
+                <br />
+                <select class="form-control">
+                    @for (int i = 1; i < 10; i++)
+                    {
+                        <option>Tầng @i</option>
+                    }
+                </select>
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('FixRoom').style.display='none'" class="Okbtn">Lưu</button>
+                <button type="button" onclick="document.getElementById('FixRoom').style.display='none'" class="Notbtn">Bỏ qua</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="AddTypeRoom" class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="form-header">
+                <p>Tạo loại phòng</p>
+                <span onclick="document.getElementById('AddTypeRoom').style.display='none'" class="close" title="Close Form">&times;</span>
+            </div>
+            <div class="container">
+                <label for="typeRoom"><b>Tên loại phòng (Bắt buộc)*</b></label>
+                <input type="text" name="typeRoom" required />
+                <label for="idRoom"><b>Mã loại phòng (Bắt buộc)*</b></label>
+                <input type="text" name="idRoom" required />
+                <label for="numPer"><b>Số người lớn mặc định</b></label>
+                <input type="number" value="1" step="1" min="1" max="100" />
+                <label for="numPer"><b>Số trẻ em mặc định</b></label>
+                <input type="number" value="0" step="1" min="0" max="100" />
+                <label for="priceRoom"><b>Giá (Bắt buộc)*</b></label>
+                <input type="number" value="0" step="10000" min="0" max="100000000" />
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('AddTypeRoom').style.display='none'" class="Notbtn">Bỏ qua</button>
+                <button type="button" onclick="document.getElementById('AddTypeRoom').style.display='none'" class="Okbtn" style="box-shadow: 0 1px 1px 0 #C7C7C7 inset; background: none repeat scroll 0 0 #bababa;">Tạo mới</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="AddStaff" class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="form-header">
+                <p>Tạo nhân viên mới</p>
+                <span onclick="document.getElementById('AddStaff').style.display='none'" class="close" title="Close Form">&times;</span>
+            </div>
+            <div class="container">
+                <label for="Pos"><b>Vị trí</b></label>
+                <select name="Pos" id="pos">
+                    <option selected>Quản lý khách sạn</option>
+                    <option>Nhân viên lễ tân</option>
+                    <option>Buồng phòng</option>
+                </select>
+                <label for="nameAccount"><b>Tên tài khoản (Bắt buộc)*</b></label>
+                <input type="text" name="nameAccount" required />
+                <label for="psw"><b>Mật khẩu (Bắt buộc)*</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="psw"><b>Xác nhận mật khẩu (Bắt buộc)*</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="nameStaff"><b>Tên nhân viên</b></label>
+                <input type="text" name="nameStaff" required />
+                <label for="sdt"><b>Di động</b></label>
+                <input type="text" name="sdt" required />
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('AddStaff').style.display='none'" class="Okbtn">Lưu</button>
+                <button type="button" onclick="document.getElementById('AddStaff').style.display='none'" class="Notbtn">Bỏ qua</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="AddRoom" class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="form-header">
+                <p>Tạo phòng</p>
+                <span onclick="document.getElementById('AddRoom').style.display='none'" class="close" title="Close Form">&times;</span>
+            </div>
+            <div class="container">
+                <label for="nameRoom"><b>Tên phòng (Bắt buộc)*</b></label>
+                <input type="text" name="nameRoom" required />
+                <select class="form-control">
+                    <option>Phòng Vip</option>
+                    <option>Phòng đơn</option>
+                    <option>Phòng 3 giường</option>
+                    <option>Phòng đôi</option>
+                </select>
+                <br />
+                <select class="form-control">
+                    @for (int i = 1; i < 10; i++)
+                    {
+                        <option>Tầng @i</option>
+                    }
+                </select>
+            </div>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('AddRoom').style.display='none'" class="Okbtn">Tạo mới</button>
+                <button type="button" onclick="document.getElementById('AddRoom').style.display='none'" class="Notbtn">Bỏ qua</button>
+            </div>
+        </form>
+    </div>
+
+
+
 
     <div class="tabs">
         <ul class="tab-header">
@@ -257,7 +749,6 @@
             <li><a href="#tab4">Danh sách tầng</a></li>
             <li><a href="#tab5">Danh sách phòng</a></li>
             <li><a href="#tab7">Nhân viên</a></li>
-           
         </ul>
 
         <div class="tab-content">
@@ -275,8 +766,8 @@
                                     <br />
                                     <input type="text" name="" value="17520460@gm.uit.edu.vn" readonly style="border:none;border-bottom:1px solid black;" />
 
-                                    <a onclick="document.getElementById('ChangeEmail').style.display='block'"> <img src="https://www.searchpng.com/wp-content/uploads/2020/01/Edit-Icon-715x715.jpg" alt="" width="25" height="25" style="background-color:white;border:none;" /></a>  
-                                   
+                                    <a onclick="document.getElementById('ChangeEmail').style.display='block'"> <img src="~/Assets/edit.png" alt="" width="25" height="25" style="background-color:white;border:none;" /></a>
+
                                     <br /><br /><br />
                                     <label>Số điện thoại</label>
                                     <br />
@@ -310,27 +801,183 @@
                 <h1>Tab2:content</h1>
             </div>
             <div id="tab3" class="content-card">
-                <h1>Tab3:content</h1>
+                <div class="type-room-header">
+                    <p>Danh sách loại phòng (6)</p>
+                    <button class="add-type-room" onclick="document.getElementById('AddTypeRoom').style.display='block'"></button>
+                </div>
+                <div class="container">
+                    <div class="card">
+                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-type-room">
+                            <p>Phòng đơn(STD)</p>
+                            <p>VND 700.000</p>
+                        </div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-type-room">
+                            <p>Phòng 3 giường(TPL)</p>
+                            <p>VND 1.000.000</p>
+                        </div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-type-room">
+                            <p>Phòng đôi(DL)</p>
+                            <p>VND 450.000</p>
+                        </div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
+                    </div>
+
+                    <div class="card">
+                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-type-room">
+                            <p>Triple(TL)</p>
+                            <p>VND 700.000</p>
+                        </div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-type-room">
+                            <p>Phòng Vip(Vip)</p>
+                            <p>VND 1.200.000</p>
+                        </div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
+                    </div>
+
+                </div>
             </div>
             <div id="tab4" class="content-card">
                 <h1>Tab4:content</h1>
             </div>
             <div id="tab5" class="content-card">
-                <h1>Tab5:content</h1>
+                <div class="room-header">
+                    <h1>Danh sách phòng(19)</h1>
+                    <button class="btn-sort sort-room">Sắp xếp phòng</button>
+                    <input class="input-room" type="text" name="name" value="" placeholder="Lọc phòng" style="left:400px;position:relative;" />
+                    <button class="add-room" onclick="document.getElementById('AddRoom').style.display='block'"></button>
+                </div>
+                <div class="conten-sort-room">
+                    <div class="container-room">
+                        <h1>Loại phòng: Phòng đôi(3)</h1>
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <div class="room">
+                                <p>
+                                    <span style="color:white;font-size:16px;transform:translate(18px,-5px);">DL</span>
+                                    <button style="width:30px;height:30px;background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;transform:translate(40px,-10px);" class="Fix-room" onclick="document.getElementById('FixRoom').style.display='block'"><div style="width:5px;height:5px;border-radius:50%;background-color:white;box-shadow:0px 6px 0px white,0px 12px 0px white;"></div></button>
+                                </p>
+                                <p style="color:white;font-family:sans-serif;font-weight:800;font-size:26px;transform:translate(1px,-24px);">101</p>
+                                <p data-letters="i"></p>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div class="container-room">
+                        <h1>Loại phòng: Phòng đơn(10)</h1>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <div class="room">
+                                <p>
+                                    <span style="color:white;font-size:16px;transform:translate(18px,-5px);">DL</span>
+                                    <button style="width:30px;height:30px;background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;transform:translate(40px,-10px);" class="Fix-room" onclick="document.getElementById('FixRoom').style.display='block'"><div style="width:5px;height:5px;border-radius:50%;background-color:white;box-shadow:0px 6px 0px white,0px 12px 0px white;"></div></button>
+                                </p>
+                                <p style="color:white;font-family:sans-serif;font-weight:800;font-size:26px;transform:translate(1px,-24px);">101</p>
+                                <p data-letters="i"></p>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
             </div>
             <div id="tab7" class="content-card">
-                <h1>Tab7:content</h1>
+                <div class="list-staff-header">
+                    <p>Danh sách nhân viên (5)</p>
+                    <button class="add-staff" onclick="document.getElementById('AddStaff').style.display='block'"></button>
+                </div>
+                <div class="container">
+                    <div class="card">
+                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-staff">
+                            <p>Cường Error</p>
+                            <p style="color:red;">Quản lý khách sạn</p>
+                        </div>
+                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+
+                    </div>
+                    <div class="card">
+                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-staff">
+                            <p>lt01 - Lễ tân 1</p>
+                            <p style="color:blue;">Nhân viên lễ tân</p>
+                        </div>
+                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-staff">
+                            <p>lt02 - Lễ tân 2</p>
+                            <p style="color:blue;">Nhân viên lễ tân</p>
+                        </div>
+                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-staff">
+                            <p>ql01 - Quản lý 1</p>
+                            <p style="color:red;">Quản lý khách sạn</p>
+                        </div>
+                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                    </div>
+                    <div class="card">
+                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                        <div class="text-staff">
+                            <p>bp01 - nvbp</p>
+                            <p style="color:blue;">Buồng phòng</p>
+                        </div>
+                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                    </div>
+                </div>
             </div>
 
 
         </div>
     </div>
 
+
+
+
     <script>
-        var form = document.getElementById('ChangeEmail');
+        var modal = document.getElementById('ChangeEmail');
+        var modal1 = document.getElementById('AddTypeRoom');
+        var modal2 = document.getElementById('AddStaff');
+        var modal3 = document.getElementById('FixRoom');
+        var modal4 = document.getElementById('AddRoom');
         window.onclick = function (event) {
-            if (event.target == form) {
-                form.style.display = 'none';
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+            if (event.target == modal1) {
+                modal1.style.display = 'none';
+            }
+            if (event.target == modal2) {
+                modal2.style.display = 'none';
+            }
+            if (event.target == modal3) {
+                modal3.style.display = 'none';
+            }
+            if (event.target == modal4) {
+                modal4.style.display = 'none';
             }
         }
     </script>
@@ -346,6 +993,35 @@
                 $(this).addClass("active");
 
                 $(tabid).addClass("active");
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#myInput').on("mousewheel", function (event) {
+                event.preventDefault();
+                $this = $(this);
+                $inc = parseFloat($this.attr('step'));
+                $max = parseFloat($this.attr('max'));
+                $min = parseFloat($this.attr('min'));
+                $currVal = parseFloat($this.val());
+
+
+                if (isNaN($currVal)) {
+                    $currVal = 0.0;
+                }
+
+
+                if (event.deltaFactor * event.deltaY > 0) {
+                    if ($currVal + $inc <= $max) {
+                        $this.val($currVal + $inc);
+                    }
+                } else {
+                    if ($currVal - $inc >= $min) {
+                        $this.val($currVal - $inc);
+                    }
+                }
             });
         });
     </script>
