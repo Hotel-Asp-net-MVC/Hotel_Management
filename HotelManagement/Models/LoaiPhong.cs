@@ -16,7 +16,7 @@ namespace HotelManagement.Models
         public double GiaThang { get; set; }
         public int SoNguoiLon { get; set; }
         public int SoTreEm { get; set; }
-        public LoaiPhong(string maloaiphong, string tenlp, double ngay, double dem, double tuan, double thang, int nguoilon, int treem)
+        public LoaiPhong(string maloaiphong, string tenlp, int nguoilon, int treem, double ngay, double dem, double tuan, double thang)
         {
             this.MaLoaiPhong = maloaiphong;
             this.TenLoaiPhong = tenlp;

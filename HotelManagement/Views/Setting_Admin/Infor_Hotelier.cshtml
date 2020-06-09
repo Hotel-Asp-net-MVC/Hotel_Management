@@ -506,7 +506,7 @@
             }
 
             .container-room .room {
-                width: 100px;
+                width: 135px;
                 height: 100px;
                 background-color: green;
                 /*float: left;*/
@@ -598,6 +598,16 @@
 </head>
 <body>
 
+    @using HotelManagement.Models;
+    @using HotelManagement.DaTa_Access_Object
+    @{
+        List<LoaiPhong> listloaiphong = new List<LoaiPhong>();
+        listloaiphong = ViewBag.listloaiphong;
+        List<Phong> listphong = new List<Phong>();
+        listphong = ViewBag.listphong;
+        List<NhanVien> listnhanvien = new List<NhanVien>();
+        listnhanvien = ViewBag.listnhanvien;
+    }
     <div id="ChangeEmail" class="modal">
         <form class="modal-content animate" action="/action_page.php" method="post">
             <div class="form-header">
@@ -650,35 +660,42 @@
                 <button type="button" onclick="document.getElementById('FixRoom').style.display='none'" class="Notbtn">Bỏ qua</button>
             </div>
         </form>
+
     </div>
 
     <div id="AddTypeRoom" class="modal">
-        <form class="modal-content animate" action="/action_page.php" method="post">
+        <div class="container">
+
+        </div>
+        <form class="modal-content animate" action="/Setting_Admin/AddLoaiPhong" method="post">
             <div class="form-header">
                 <p>Tạo loại phòng</p>
+
                 <span onclick="document.getElementById('AddTypeRoom').style.display='none'" class="close" title="Close Form">&times;</span>
             </div>
             <div class="container">
+
                 <label for="typeRoom"><b>Tên loại phòng (Bắt buộc)*</b></label>
                 <input type="text" name="typeRoom" required />
                 <label for="idRoom"><b>Mã loại phòng (Bắt buộc)*</b></label>
                 <input type="text" name="idRoom" required />
                 <label for="numPer"><b>Số người lớn mặc định</b></label>
-                <input type="number" value="1" step="1" min="1" max="100" />
+                <input type="number" name="songuoilon" value="1" step="1" min="1" max="100" />
                 <label for="numPer"><b>Số trẻ em mặc định</b></label>
-                <input type="number" value="0" step="1" min="0" max="100" />
+                <input type="number" name="sotrecon" value="0" step="1" min="0" max="100" />
                 <label for="priceRoom"><b>Giá (Bắt buộc)*</b></label>
-                <input type="number" value="0" step="10000" min="0" max="100000000" />
+                <input type="number" name="gia" value="0" step="10000" min="0" max="100000000" />
             </div>
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('AddTypeRoom').style.display='none'" class="Notbtn">Bỏ qua</button>
-                <button type="button" onclick="document.getElementById('AddTypeRoom').style.display='none'" class="Okbtn" style="box-shadow: 0 1px 1px 0 #C7C7C7 inset; background: none repeat scroll 0 0 #bababa;">Tạo mới</button>
+                <button type="submit" class="Okbtn" style="box-shadow: 0 1px 1px 0 #C7C7C7 inset; background: none repeat scroll 0 0 #bababa;">Tạo mới</button>
             </div>
+
         </form>
     </div>
 
     <div id="AddStaff" class="modal">
-        <form class="modal-content animate" action="/action_page.php" method="post">
+        <form class="modal-content animate" action="/Setting_Admin/AddNhanVien" method="post">
             <div class="form-header">
                 <p>Tạo nhân viên mới</p>
                 <span onclick="document.getElementById('AddStaff').style.display='none'" class="close" title="Close Form">&times;</span>
@@ -688,7 +705,7 @@
                 <select name="Pos" id="pos">
                     <option selected>Quản lý khách sạn</option>
                     <option>Nhân viên lễ tân</option>
-                    <option>Buồng phòng</option>
+                    <option>Nhân viên kế toán</option>
                 </select>
                 <label for="nameAccount"><b>Tên tài khoản (Bắt buộc)*</b></label>
                 <input type="text" name="nameAccount" required />
@@ -700,41 +717,49 @@
                 <input type="text" name="nameStaff" required />
                 <label for="sdt"><b>Di động</b></label>
                 <input type="text" name="sdt" required />
+                <label for="cmnd"><b>Số chứng minh nhân dân (Bắt buộc)*</b></label>
+                <input type="text" name="cmnd" required />
             </div>
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('AddStaff').style.display='none'" class="Okbtn">Lưu</button>
+                <button type="submit" class="Okbtn">Lưu</button>
                 <button type="button" onclick="document.getElementById('AddStaff').style.display='none'" class="Notbtn">Bỏ qua</button>
             </div>
+           
         </form>
     </div>
 
     <div id="AddRoom" class="modal">
-        <form class="modal-content animate" action="/action_page.php" method="post">
+        <form class="modal-content animate" action="/Setting_Admin/AddPhong" method="post">
             <div class="form-header">
                 <p>Tạo phòng</p>
                 <span onclick="document.getElementById('AddRoom').style.display='none'" class="close" title="Close Form">&times;</span>
             </div>
             <div class="container">
-                <label for="nameRoom"><b>Tên phòng (Bắt buộc)*</b></label>
-                <input type="text" name="nameRoom" required />
-                <select class="form-control">
-                    <option>Phòng Vip</option>
-                    <option>Phòng đơn</option>
-                    <option>Phòng 3 giường</option>
-                    <option>Phòng đôi</option>
+                <label for="nameRoom"><b>Mã phòng (Bắt buộc)*</b></label>
+                <input type="text" name="maphong" required />
+                <label for="nameRoom"><b>Loại phòng (Bắt buộc)*</b></label>
+                <select class="form-control" name="loaiphong">
+                    @{
+                        for (int i = 0; i < listloaiphong.Count(); i++)
+                        {
+                            <option > 
+                           
+                            @listloaiphong[i].TenLoaiPhong
+                            
+                            </option>
+                        }
+                    }
+
                 </select>
                 <br />
-                <select class="form-control">
-                    @for (int i = 1; i < 10; i++)
-                    {
-                        <option>Tầng @i</option>
-                    }
-                </select>
+                <label for="nameRoom"><b>Số phòng (Bắt buộc)*</b></label>
+                <input type="text" name="sophong" required />
             </div>
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('AddRoom').style.display='none'" class="Okbtn">Tạo mới</button>
+                <button type="submit"  class="Okbtn">Tạo mới</button>
                 <button type="button" onclick="document.getElementById('AddRoom').style.display='none'" class="Notbtn">Bỏ qua</button>
             </div>
+          
         </form>
     </div>
 
@@ -801,57 +826,31 @@
                 <h1>Tab2:content</h1>
             </div>
             <div id="tab3" class="content-card">
+
                 <div class="type-room-header">
-                    <p>Danh sách loại phòng (6)</p>
+                    <p>Danh sách loại phòng (@listloaiphong.Count())</p>
+
                     <button class="add-type-room" onclick="document.getElementById('AddTypeRoom').style.display='block'"></button>
+
                 </div>
                 <div class="container">
-                    <div class="card">
-                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-type-room">
-                            <p>Phòng đơn(STD)</p>
-                            <p>VND 700.000</p>
-                        </div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-type-room">
-                            <p>Phòng 3 giường(TPL)</p>
-                            <p>VND 1.000.000</p>
-                        </div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-type-room">
-                            <p>Phòng đôi(DL)</p>
-                            <p>VND 450.000</p>
-                        </div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
-                    </div>
+                    @{
 
-                    <div class="card">
-                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-type-room">
-                            <p>Triple(TL)</p>
-                            <p>VND 700.000</p>
-                        </div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-type-room">
-                            <p>Phòng Vip(Vip)</p>
-                            <p>VND 1.200.000</p>
-                        </div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                        <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
-                    </div>
+                        for (int i = 0; i < listloaiphong.Count(); i++)
+                        {
+                            <div class="card">
+                                <div class="icon-type-room"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                                <div class="text-type-room">
+                                    <p>@listloaiphong[i].TenLoaiPhong</p>
+                                    <p>@listloaiphong[i].GiaTheoNgay</p>
+                                </div>
+                                <div class="icon-type-room"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                                <div class="icon-type-room"><img width="30" height="30" src="~/Assets/money.png" /></div>
+                            </div>
+                        }
+                    }
+
+
 
                 </div>
             </div>
@@ -867,86 +866,67 @@
                 </div>
                 <div class="conten-sort-room">
                     <div class="container-room">
-                        <h1>Loại phòng: Phòng đôi(3)</h1>
-                        @for (int i = 0; i < 3; i++)
-                        {
-                            <div class="room">
-                                <p>
-                                    <span style="color:white;font-size:16px;transform:translate(18px,-5px);">DL</span>
-                                    <button style="width:30px;height:30px;background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;transform:translate(40px,-10px);" class="Fix-room" onclick="document.getElementById('FixRoom').style.display='block'"><div style="width:5px;height:5px;border-radius:50%;background-color:white;box-shadow:0px 6px 0px white,0px 12px 0px white;"></div></button>
-                                </p>
-                                <p style="color:white;font-family:sans-serif;font-weight:800;font-size:26px;transform:translate(1px,-24px);">101</p>
-                                <p data-letters="i"></p>
-                            </div>
+
+                        @{
+                            
+                            for (int i = 0; i < listloaiphong.Count(); i++)
+                            {
+                                <h1>Loại phòng: @listloaiphong[i].TenLoaiPhong</h1>
+                                for (int j = 0; j < listphong.Count(); j++)
+                                {
+                                    if (listloaiphong[i].TenLoaiPhong == listphong[j].TenLoaiPhong)
+                                    {
+                                        <div class="room">
+                                            <p>
+                                                <span style="color:white;font-size:13px;transform:translate(18px,-5px);">@listphong[j].TenLoaiPhong</span>
+                                                <button style="width:30px;height:30px;background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;transform:translate(40px,-10px);" class="Fix-room" onclick="document.getElementById('FixRoom').style.display='block'"><div style="width:5px;height:5px;border-radius:50%;background-color:white;box-shadow:0px 6px 0px white,0px 12px 0px white;"></div></button>
+                                            </p>
+                                            <p style="color:white;font-family:sans-serif;font-weight:800;font-size:26px;transform:translate(1px,-24px);">@listphong[j].SoPhong</p>
+                                            <p data-letters="i"></p>
+                                        </div>
+                                    }
+                                }
+                            }
                         }
+                        @*@for (int i = 0; i < 3; i++)
+                            {
+                                <div class="room">
+                                    <p>
+                                        <span style="color:white;font-size:16px;transform:translate(18px,-5px);">DL</span>
+                                        <button style="width:30px;height:30px;background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;transform:translate(40px,-10px);" class="Fix-room" onclick="document.getElementById('FixRoom').style.display='block'"><div style="width:5px;height:5px;border-radius:50%;background-color:white;box-shadow:0px 6px 0px white,0px 12px 0px white;"></div></button>
+                                    </p>
+                                    <p style="color:white;font-family:sans-serif;font-weight:800;font-size:26px;transform:translate(1px,-24px);">101</p>
+                                    <p data-letters="i"></p>
+                                </div>
+                            }*@
 
 
                     </div>
-                    <div class="container-room">
-                        <h1>Loại phòng: Phòng đơn(10)</h1>
-                        @for (int i = 0; i < 10; i++)
-                        {
-                            <div class="room">
-                                <p>
-                                    <span style="color:white;font-size:16px;transform:translate(18px,-5px);">DL</span>
-                                    <button style="width:30px;height:30px;background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;transform:translate(40px,-10px);" class="Fix-room" onclick="document.getElementById('FixRoom').style.display='block'"><div style="width:5px;height:5px;border-radius:50%;background-color:white;box-shadow:0px 6px 0px white,0px 12px 0px white;"></div></button>
-                                </p>
-                                <p style="color:white;font-family:sans-serif;font-weight:800;font-size:26px;transform:translate(1px,-24px);">101</p>
-                                <p data-letters="i"></p>
-                            </div>
-                        }
 
-
-                    </div>
                 </div>
             </div>
             <div id="tab7" class="content-card">
                 <div class="list-staff-header">
-                    <p>Danh sách nhân viên (5)</p>
+                    <p>Danh sách nhân viên @listnhanvien.Count()</p>
                     <button class="add-staff" onclick="document.getElementById('AddStaff').style.display='block'"></button>
                 </div>
                 <div class="container">
-                    <div class="card">
-                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-staff">
-                            <p>Cường Error</p>
-                            <p style="color:red;">Quản lý khách sạn</p>
-                        </div>
-                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
+                    @{
+                        for (int i = 0; i < listnhanvien.Count(); i++)
+                        {
+                            <div class="card">
+                                <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
+                                <div class="text-staff">
+                                    <p>@listnhanvien[i].TenNV</p>
+                                    <p style="color:red;">@listnhanvien[i].ViTri</p>
+                                </div>
+                                <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
 
-                    </div>
-                    <div class="card">
-                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-staff">
-                            <p>lt01 - Lễ tân 1</p>
-                            <p style="color:blue;">Nhân viên lễ tân</p>
-                        </div>
-                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-staff">
-                            <p>lt02 - Lễ tân 2</p>
-                            <p style="color:blue;">Nhân viên lễ tân</p>
-                        </div>
-                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-staff">
-                            <p>ql01 - Quản lý 1</p>
-                            <p style="color:red;">Quản lý khách sạn</p>
-                        </div>
-                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                    </div>
-                    <div class="card">
-                        <div class="icon-staff"><img width="30" height="30" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Breezeicons-actions-22-media-playback-pause.svg/1200px-Breezeicons-actions-22-media-playback-pause.svg.png" /></div>
-                        <div class="text-staff">
-                            <p>bp01 - nvbp</p>
-                            <p style="color:blue;">Buồng phòng</p>
-                        </div>
-                        <div title="Sửa nhân viên" class="icon-staff"><img width="30" height="30" src="~/Assets/edit.png" /></div>
-                    </div>
+                            </div>
+                        }
+                    }
+
+
                 </div>
             </div>
 

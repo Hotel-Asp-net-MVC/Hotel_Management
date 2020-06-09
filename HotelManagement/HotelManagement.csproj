@@ -131,6 +131,8 @@
     <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="DaTa_Access_Object\Connect_Database.DAO.cs" />
     <Compile Include="DaTa_Access_Object\HoaDonDAO.cs" />
+    <Compile Include="DaTa_Access_Object\LoaiPhongDAO.cs" />
+    <Compile Include="DaTa_Access_Object\NhanVienDAO.cs" />
     <Compile Include="DaTa_Access_Object\PhongDAO.cs" />
     <Compile Include="DaTa_Access_Object\ThongTinPhongDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -140,8 +142,8 @@
     <Compile Include="Models\DatPhong.cs" />
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\KhachHang.cs" />
-    <Compile Include="Models\LoaiNhanVien.cs" />
     <Compile Include="Models\LoaiPhong.cs" />
+    <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Models\Phong.cs" />
     <Compile Include="Models\ThongTinPhong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
