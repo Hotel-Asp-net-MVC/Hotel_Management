@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "BaoCao";
+}
+@section header{
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <style>
+            .table tr {
+                font-size: 16px
+            }
+            .container{
+                 font-size: 16px
+            }
+        </style>
+
+    </head>
+    <body>
+        @using HotelManagement.Models;
+        @using HotelManagement.DaTa_Access_Object;
+
+        <div class="container">
+            <h1>@ViewBag.ngayden</h1>
+            <form action="/BaoCao/CT_BaoCao" method="post">
+
+                <p>Từ</p>  <input type="date" name="ngayden">
+                <p>Đến</p>
+                <input type="date" name="ngaydi">
+
+                <input type="submit" value="Xuất">
+            </form>
+        </div>
+        <table id="tblData" class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>DOANH THU</th>
+                    <th>Từ @ViewBag.ngayden</th>
+                    <th>Đến @ViewBag.ngaydi</th>
+                    <th></th>
+                </tr>
+
+            </thead>
+            <thead>
+                <tr>
+                    <th>Stt</th>
+                    <th>Mã Đặt Phòng</th>
+                    <th>Tên Khách Hàng</th>
+                    <th>Nhân Viên Thanh Toán</th>
+                    <th>Số Phòng</th>
+                    <th>Ngày Vào</th>
+                    <th>Ngày Đi</th>
+                    <th>Tiền Phòng</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @{
+                    List<BaoCao> bc = new List<BaoCao>();
+                    bc = ViewBag.baocao;
+                    int soluongphong = 0;
+                    double doanhthu = 0;
+                    if(bc!=null)
+                    {
+                        soluongphong = bc.Count();
+                        doanhthu = 0;
+                        for (int i = 0; i < bc.Count(); i++)
+                        {
+                            doanhthu += bc[i].Gia;
+                        <tr>
+                            <td>@i</td>
+                            <td>@bc[i].MaDP</td>
+                            <td>@bc[i].TenKH</td>
+                            <td>@bc[i].TenNV</td>
+                            <td>@bc[i].SoPhong</td>
+                            <td>@bc[i].NgayDen</td>
+                            <td>@bc[i].NgayDi</td>
+                            <td>@bc[i].Gia</td>
+
+                        </tr>
+                    }
+                    }
+
+                }
+
+
+            </tbody>
+            <thead>
+                <tr>
+                    <th>Tổng</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>@soluongphong</th>
+                    <th></th>
+                    <th></th>
+                    <th>@doanhthu</th>
+
+                </tr>
+            </thead>
+        </table>
+
+        <button onclick="exportTableToExcel('tblData')" style="font-size:16px">Export Table Data To Excel File</button>
+        <script>
+            function exportTableToExcel(tableID, filename = '') {
+                var downloadLink;
+                var dataType = 'application/vnd.ms-excel';
+                var tableSelect = document.getElementById(tableID);
+                var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+                // Specify file name
+                filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+                // Create download link element
+                downloadLink = document.createElement("a");
+
+                document.body.appendChild(downloadLink);
+
+                if (navigator.msSaveOrOpenBlob) {
+                    var blob = new Blob(['\ufeff', tableHTML], {
+                        type: dataType
+                    });
+                    navigator.msSaveOrOpenBlob(blob, filename);
+                } else {
+                    // Create a link to the file
+                    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+                    // Setting the file name
+                    downloadLink.download = filename;
+
+                    //triggering the function
+                    downloadLink.click();
+                }
+            }
+        </script>
+
+    </body>
+    </html>
+}
