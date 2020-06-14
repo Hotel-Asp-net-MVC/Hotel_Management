@@ -123,12 +123,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaoCaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\Setting_AdminController.cs" />
     <Compile Include="Controllers\SoDoPhongController.cs" />
     <Compile Include="Controllers\ThongKeController.cs" />
+    <Compile Include="DaTa_Access_Object\BaoCaoDAO.cs" />
     <Compile Include="DaTa_Access_Object\Connect_Database.DAO.cs" />
     <Compile Include="DaTa_Access_Object\HoaDonDAO.cs" />
     <Compile Include="DaTa_Access_Object\LoaiPhongDAO.cs" />
@@ -138,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaoCao.cs" />
     <Compile Include="Models\CT_DatPhong.cs" />
     <Compile Include="Models\DatPhong.cs" />
     <Compile Include="Models\HoaDon.cs" />
@@ -1966,6 +1969,7 @@
     <Content Include="Views\ThongKe\UIThongKe.cshtml" />
     <Content Include="Views\ThongKe\ThongKe.cshtml" />
     <Content Include="Views\SoDoPhong\SoDoPhong.cshtml" />
+    <Content Include="Views\BaoCao\BaoCao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
