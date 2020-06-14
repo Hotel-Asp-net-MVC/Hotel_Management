@@ -238,25 +238,23 @@
     <div class="tabs">
         <ul class="tab-header">
             <li><a href="#tab1" class="active">Doanh Thu</a></li>
-            <li><a href="#tab2">Thống Kê 3 Năm Gần Nhất</a></li>
-            <li><a href="#tab3">Loại phòng</a></li>
-            <li><a href="#tab4">Danh sách tầng</a></li>
-            <li><a href="#tab5">Danh sách phòng</a></li>
-            <li><a href="#tab7">Nhân viên</a></li>
+            <li><a href="#tab2">So sánh doanh thu</a></li>
+            <li><a href="#tab3">Tình trạng phòng</a></li>
+            
 
         </ul>
 
         <div class="tab-content">
             <div id="tab1" class="content-card active">
-
+                @*vẽ biểu đồ thống kê doanh thu các tháng trong năm*@
                 <form class="infor-admin" action="/ThongKe/ThongKe" method="post">
-                    <h1>@ViewBag.ngaythangnam</h1>
+
                     <div class="card">
                         <ul>
                             <input name="nam" type="text" style="width:200px; left:100px" />
                             <button class="icon-search" type="submit"> </button>
                         </ul>
-                      
+
                         <figure class="highcharts-figure">
                             <div id="container" style="height:600px "></div>
 
@@ -265,6 +263,8 @@
                     </div>
                 </form>
             </div>
+
+            @*so sánh doanh thu các năm*@
             <div id="tab2" class="content-card">
                 <form class="infor-admin" action="" method="post">
                     <div class="card">
@@ -319,7 +319,15 @@
             title: {
             text: 'Doanh Thu Tháng'
             },
-
+        xAxis: {
+        categories: ['Tha', 'Oranges', 'Pears', 'Grapes', 'Bananas'],
+        labels: {
+            skew3d: true,
+            style: {
+                fontSize: '16px'
+            }
+        }
+    },
             plotOptions: {
             column: {
                 depth: 50

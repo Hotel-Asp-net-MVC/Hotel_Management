@@ -1,15 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "ThongKe";
-}
-
-
-@{
-    ViewBag.Title = "UIThongKe";
+    ViewBag.Title = "SoSanhDoanhThu";
 }
 @section header{
 
 }
+
 <html>
 <head>
     <style>
@@ -221,126 +217,138 @@
             }
         }
     </style>
-    <script src="~/Scripts/chart/highcharts.js"></script>
-    <script src="~/Scripts/chart/exporting.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <style>
+        .highcharts-figure, .highcharts-data-table table {
+            min-width: 360px;
+            max-width: 800px;
+            margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #EBEBEB;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+    </style>
 </head>
 <body>
-
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     @using HotelManagement.Models;
     @using HotelManagement.DaTa_Access_Object
     <div class="tabs">
         <ul class="tab-header">
             <li><a href="#tab1" class="active">Doanh Thu</a></li>
-          
+
         </ul>
 
         <div class="tab-content">
+            @*so sánh doanh thu các năm*@
             <div id="tab1" class="content-card active">
-                @*vẽ biểu đồ thống kê doanh thu các tháng trong năm*@
-                <form class="infor-admin" action="/ThongKe/ThongKe" method="post">
-
+                <form class="infor-admin" action="/ThongKe/SoSanhDoanhThu" method="post">
                     <div class="card">
                         <ul>
-                            <input name="nam" type="text" style="width:200px; left:100px" />
-                            <button class="icon-search" type="submit"> </button>
+                            <input name="nam1" type="text" style="width:200px; left:100px" />
+                            <br />
+                            <br />
+                            <input name="nam2" type="text" style="width:200px; left:100px" />
+                            <button type="submit"> Xuất </button>
                         </ul>
 
                         <figure class="highcharts-figure">
-                            <div id="container" style="height:600px"></div>
-
+                            <div id="container" style="height:600px; width:900px" ></div>
+                          
                         </figure>
 
                     </div>
                 </form>
             </div>
-            @*so sánh doanh thu các năm*@
-            @*<div id="tab2" class="content-card">
-                <form class="infor-admin" action="/SoSanhDoanhThu/SoSanhDoanhThu" method="post">
-                    <div class="card">
-                        <button type="submit"></button>
 
-                    </div>
-                </form>
-            </div>*@
 
-         
         </div>
     </div>
-    <h1>@ViewBag.nam</h1>
-    <script type="text/javascript">
-       @{
-           List<double> doanhthu= new List<double>();
-           doanhthu = ViewBag.thunhap;
 
-       }
-        var giatri = "@ViewBag.valu";
-        var array = giatri.split(" ");
+    <script type="text/javascript">
+
+        var doanhthunam1 = "@ViewBag.valuenam1";
+        var doanhthunam2 = "@ViewBag.valuenam2";
+        var arraynam1 = doanhthunam1.split(" ");
+        var arraynam2 = doanhthunam2.split(" ");
+        var nam1 = '@ViewBag.nam1';
+        var nam2 = '@ViewBag.nam2';
+        var x='aaa'
         var a = [];
-        for (var i = 0; i < array.length; i++) {
-            var c = Number(array[i]);
+        var b = [];
+        for (var i = 0; i < arraynam1.length; i++) {
+            var c = Number(arraynam1[i]);
             a.push(c);
         }
+        for (var i = 0; i < arraynam2.length; i++) {
+            var c = Number(arraynam2[i]);
+            b.push(c);
+        }
 
-            var chart = new Highcharts.Chart({
-            chart: {
-
-
-            renderTo: 'container',
-                            type: 'column',
-                            options3d: {
-
-
-                enabled: true,
-                                alpha: 15,
-                                beta: 15,
-                                depth: 50,
-                                viewDistance: 25
-                }
-            },
-            title: {
-            text: 'Doanh Thu Tháng'
-            },
-       xAxis: {
-        categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],
-        labels: {
-            skew3d: true,
-            style: {
-                fontSize: '16px'
-            }
+            var chart = new Highcharts.chart('container', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Monthly Average Temperature'
+    },
+   
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        title: {
+            text: 'Temperature (°C)'
         }
     },
-            plotOptions: {
-            column: {
-                depth: 50
-                }
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
             },
+            enableMouseTracking: false
+        }
+    },
                 series: [{
-                    data: a
-            }]
-        });
-
-
-        // Activate the sliders
-        $('#sliders input').on('input change', function () {
-                chart.options.chart.options3d[this.id] = parseFloat(this.value);
-                showValues();
-                chart.redraw(false);
-            });
-
-        showValues();
-
+                    name: nam1,
+        data: a
+    }, {
+        name: nam2,
+        data: b
+    }]
+});
     </script>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -360,5 +368,6 @@
     </script>
 </body>
 </html>
+
 
 
