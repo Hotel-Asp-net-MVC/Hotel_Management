@@ -1970,6 +1970,8 @@
     <Content Include="Views\ThongKe\ThongKe.cshtml" />
     <Content Include="Views\SoDoPhong\SoDoPhong.cshtml" />
     <Content Include="Views\BaoCao\BaoCao.cshtml" />
+    <Content Include="Views\ThongKe\SoSanhDoanhThu.cshtml" />
+    <Content Include="Views\ThongKe\SoSanhDefaut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
