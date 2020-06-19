@@ -24,6 +24,7 @@
                 padding-left: 26px;
                 padding-bottom: 0px;
                 background-color: rgb(0,127,255);
+<<<<<<< HEAD
                 color: white;
             }
 
@@ -31,6 +32,16 @@
             .modal-body {
             }
 
+=======
+                color:white;
+            }
+            
+
+            .modal-body{
+
+            }
+            
+>>>>>>> d4be38aa98cbeafc68bdbeb42385bb79f1d65884
             .body-room {
                 background-color: white;
                 width: 100%;
@@ -263,8 +274,95 @@
         @using HotelManagement.Models;
         @using HotelManagement.DaTa_Access_Object;
 
+<<<<<<< HEAD
         <h1>@ViewBag.month</h1>
         <h1>@ViewBag.list</h1>
+=======
+        <div id="modalNhanPhong" class="modal" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" style="max-width:60%!important">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="transform:translate(10px,10px);"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title w-700 font-weight-bold">Nhận phòng nhanh 301</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label data-error="wrong" data-success="right" for="inputTenKhach">Tên khách*</label>
+                                    <input type="text" id="inputTenKhach" class="form-control" placeholder="Enter name" style="font-size:20px;font-weight:500;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <input type="text" id="inputCMND" class="form-control" placeholder="Chứng minh nhân dân" style="margin-top:28px;border:none;border-bottom:1px solid gray;font-size:20px;font-weight:500;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <select class="form-control" id="typeRoom" style="font-size:16px;font-weight:500;font-family:sans-serif;border:none;border-bottom:1px solid gray;">
+                                        <option>Phòng đơn</option>
+                                        <option>Phòng đôi</option>
+                                        <option>Phòng ba</option>
+                                        <option>Phòng Vip</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <select class="form-control" id="numberRoom" style="font-size:16px;font-weight:500;font-family:sans-serif;border:none;border-bottom:1px solid gray;">
+                                        <option>301</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label data-error="wrong" data-success="right" for="thoigianden" style="transform:translate(0,38px);">Sẽ đến : </label>
+                                    <input type="datetime-local" id="thoigianden" style="transform:translate(0,38px);"/>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label data-error="wrong" data-success="right" for="inputTenKhach">Giá</label>
+                                    <input type="text" id="inputGia" class="form-control" placeholder="Enter Giá Phòng" style="font-size:20px;font-weight:500;border:none;border-bottom:1px solid gray;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label data-error="wrong" data-success="right" for="thoigiandi" style="transform:translate(0,38px);">Sẽ đi : </label>
+                                    <input type="datetime-local" id="thoigiandi" style="transform:translate(0,38px);" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label data-error="wrong" data-success="right" for="inputSoNguoiLon">Người lớn</label>
+                                    <input type="text" id="inputSoNguoiLon" class="form-control" style="font-size:20px;font-weight:500;border:none;border-bottom:1px solid gray;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <input type="text" id="inputDatCoc" class="form-control" placeholder="Đặt Cọc" style="margin-top:28px;border:none;border-bottom:1px solid gray;font-size:20px;font-weight:500;">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label data-error="wrong" data-success="right" for="inputSoTreEm">Số trẻ em</label>
+                                    <input type="text" id="inputSoTreEm" class="form-control" style="font-size:20px;font-weight:500;border:none;border-bottom:1px solid gray;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-primary" data-dismiss="modal" aria-hidden="true" style="transform:translate(-500px,0);">Bỏ qua</button>
+                        <button class="btn btn-primary btn-sm">Đặt trước</button>
+                        <button class="btn btn-danger btn-sm">Nhận phòng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+>>>>>>> d4be38aa98cbeafc68bdbeb42385bb79f1d65884
 
         <div class="body-room">
 
@@ -326,6 +424,7 @@
                                     </p>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="room-right" id="sophong" style="background-color:rgb(66, 242, 157 )">
                                     <p class="room-right-text"> @thongtinphong[i].TrangThai</p>
 
@@ -430,6 +529,11 @@
                                             </div>
                                         </form>
                                     </div>
+=======
+                                <div class="room-right" id="sophong" style="background-color:rgb(66, 242, 157 )" data-toggle="modal" data-target="#modalRoom">
+                                    <p class="room-right-text"> @thongtinphong[i].TrangThai</p>
+
+>>>>>>> d4be38aa98cbeafc68bdbeb42385bb79f1d65884
                                 </div>
                             </div>
                         }
@@ -438,7 +542,11 @@
                         if (thongtinphong[i].TrangThai == "Da Dat")
                         {
                             <div class="room">
+<<<<<<< HEAD
                                 <div class="room-left" id="@i" style="background-color:blue" data-toggle="modal" data-target="#nhanphong">
+=======
+                                <div class="room-left" id="@i" style="background-color:blue" data-toggle="modal" data-target="#modalNhanPhong">
+>>>>>>> d4be38aa98cbeafc68bdbeb42385bb79f1d65884
                                     <p class="room-left-type">@thongtinphong[i].LoaiPhong</p>
                                     <p class="room-left-number">@thongtinphong[i].SoPhong</p>
                                     <p class="room-left-icon">
@@ -539,6 +647,7 @@
 
             </div>
         </div>
+<<<<<<< HEAD
         <div class="modal fade bottom" id="modalRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content" style="border-radius:0;">
@@ -624,6 +733,10 @@
 
            
         </script>
+=======
+        
+        
+>>>>>>> d4be38aa98cbeafc68bdbeb42385bb79f1d65884
     </body>
 </html>
 }

@@ -1973,8 +1973,11 @@
     <Content Include="Views\ThongKe\ThongKe.cshtml" />
     <Content Include="Views\SoDoPhong\SoDoPhong.cshtml" />
     <Content Include="Views\BaoCao\BaoCao.cshtml" />
+<<<<<<< HEAD
+=======
     <Content Include="Views\ThongKe\SoSanhDoanhThu.cshtml" />
     <Content Include="Views\ThongKe\SoSanhDefaut.cshtml" />
+>>>>>>> 3239c101e6586abff8053cd26712df627f7d5e35
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
