@@ -20,7 +20,7 @@ namespace HotelManagement.DaTa_Access_Object
             {
                 while (reader.Read())
                 {
-                    ThongTinPhong TTP = new ThongTinPhong((string)reader["TenLoaiPhong"], (int)reader["SoPhong"], (string)reader["TrangThai"],null, null, null);
+                    ThongTinPhong TTP = new ThongTinPhong((string)reader["MaPhong"],(string)reader["TenLoaiPhong"], (int)reader["SoPhong"], (string)reader["TrangThai"],null, null, null,(double)reader["GiaTheoNgay"]);
                     ThongTin.Add(TTP);
                 }
             }
@@ -30,14 +30,14 @@ namespace HotelManagement.DaTa_Access_Object
                 {
                      string sqltt= "select * from phong ,datphong, ct_datphong, khachhang WHERE phong.MaPhong= datphong.MaPhong AND datphong.MaKH=khachhang.MaKH AND datphong.MaDP= ct_datphong.MaDP and phong.SoPhong="+ ThongTin[i].SoPhong +"";
                     MySqlCommand command_ct = new MySqlCommand(sqltt, mySql);
-                    var reader = command_ct.ExecuteReader();
-                    while (reader.Read())
+                    using (var reader1 = command_ct.ExecuteReader()) { 
+                    while (reader1.Read())
                     {
-                        ThongTin[i].TenKhachHang = (string)reader["TenKH"];
-                        ThongTin[i].ThoiGianDen = ((DateTime)(reader["NgayDen"])).ToString();
-                        ThongTin[i].ThoiGianDi=reader["NgayDi"].ToString();
+                        ThongTin[i].TenKhachHang = (string)reader1["TenKH"];
+                        ThongTin[i].ThoiGianDen = ((DateTime)(reader1["NgayDen"])).ToString();
+                        ThongTin[i].ThoiGianDi=reader1["NgayDi"].ToString();
                     }
-                    
+                    }
                     
                 }
             }

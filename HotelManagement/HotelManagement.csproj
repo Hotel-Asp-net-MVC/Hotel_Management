@@ -132,7 +132,10 @@
     <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="DaTa_Access_Object\BaoCaoDAO.cs" />
     <Compile Include="DaTa_Access_Object\Connect_Database.DAO.cs" />
+    <Compile Include="DaTa_Access_Object\CT_DatPhongDAO.cs" />
+    <Compile Include="DaTa_Access_Object\DatPhongDAO.cs" />
     <Compile Include="DaTa_Access_Object\HoaDonDAO.cs" />
+    <Compile Include="DaTa_Access_Object\KhachHangDAO.cs" />
     <Compile Include="DaTa_Access_Object\LoaiPhongDAO.cs" />
     <Compile Include="DaTa_Access_Object\NhanVienDAO.cs" />
     <Compile Include="DaTa_Access_Object\PhongDAO.cs" />

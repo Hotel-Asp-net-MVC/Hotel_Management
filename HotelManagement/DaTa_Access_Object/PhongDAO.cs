@@ -19,6 +19,17 @@ namespace HotelManagement.DaTa_Access_Object
             MySqlCommand command = new MySqlCommand(sql, mySql);
             command.ExecuteReader();
         }
+        //update trạng thái phòng theo số phòng
+
+        public void UpdateStatus(string status, string sophong)
+        {
+            //UPDATE `phong` SET `TrangThai`='Da Dat' WHERE phong.MaPhong='p001'
+            Connect_Database connect = new Connect_Database();
+            MySqlConnection mySql = connect.Connection();
+            string sql = "UPDATE `phong` SET `TrangThai`='" + status + "' WHERE phong.SoPhong='" + sophong + "' ";
+            MySqlCommand command = new MySqlCommand(sql, mySql);
+            command.ExecuteReader();
+        }
         // lấy thông tin của tất cả các phong
         public List<Phong> GetAllPhong()
         {
